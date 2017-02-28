@@ -30,8 +30,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import org.eclipse.tracecompass.ctf.core.tests.CtfCoreTestPlugin;
-
 /**
  * Generate a lttng trace (kernel or ust)
  *
@@ -181,10 +179,10 @@ public class LttngTraceGenerator {
      *
      * @param args
      *            args
+     * @throws IOException
      */
-    public static void main(String[] args) {
-        // not using createTempFile as this is a directory
-        String path = CtfCoreTestPlugin.getTemporaryDirPath() + File.separator + TRACE_NAME;
+    public static void main(String[] args) throws IOException {
+        String path = Files.createTempDirectory(TRACE_NAME).toString();
         generateLttngTrace(new File(path));
     }
 
@@ -203,10 +201,6 @@ public class LttngTraceGenerator {
      * @return the path
      */
     public static String getPath() {
-        CtfCoreTestPlugin plugin = CtfCoreTestPlugin.getDefault();
-        if (plugin == null) {
-            return null;
-        }
         Path tracePath = Paths.get("..", "..", "ctf", "org.eclipse.tracecompass.ctf.core.tests", TRACES_DIRECTORY, TRACE_NAME);
         tracePath = tracePath.toAbsolutePath();
         File file = tracePath.toFile();

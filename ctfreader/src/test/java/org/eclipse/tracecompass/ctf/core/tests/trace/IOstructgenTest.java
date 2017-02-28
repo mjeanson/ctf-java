@@ -21,12 +21,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
-import org.eclipse.tracecompass.ctf.core.tests.CtfCoreTestPlugin;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.IOStructGen;
@@ -256,8 +256,17 @@ public class IOstructgenTest {
     private static final String allDressedTSDL = metadataDecs + environmentMD + clockMD
             + ctfStart + ctfHeaders + ctfBody + enumMd;
 
-    static final String tempTraceDir = CtfCoreTestPlugin.getTemporaryDirPath()
-            + File.separator + "tempTrace";
+    static final String tempTraceDir;
+    static {
+        String dir;
+        try {
+            dir = Files.createTempDirectory("tempTrace").toString();
+        } catch (IOException e) {
+            dir = null;
+            e.printStackTrace();
+        }
+        tempTraceDir = dir;
+    }
 
     private static final int DATA_SIZE = 4096;
 
