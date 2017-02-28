@@ -89,7 +89,8 @@ public final class TypedefParser extends AbstractScopedCommonTreeParser {
         if (typeSpecifierListNode == null) {
             throw new ParseException("Cannot have a typedef without specifiers"); //$NON-NLS-1$
         }
-        List<CommonTree> typeDeclaratorList = typeDeclaratorListNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> typeDeclaratorList = (List<CommonTree>) typeDeclaratorListNode.getChildren();
 
         Map<String, IDeclaration> declarations = new HashMap<>();
 

@@ -120,7 +120,8 @@ public final class IntegerDeclarationParser implements ICommonTreeParser {
             throw new IllegalArgumentException("Param must be a " + Param.class.getCanonicalName()); //$NON-NLS-1$
         }
         CTFTrace trace = ((Param) parameter).fTrace;
-        List<CommonTree> children = integer.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) integer.getChildren();
 
         /*
          * If the integer has no attributes, then it is missing the size
@@ -153,7 +154,8 @@ public final class IntegerDeclarationParser implements ICommonTreeParser {
                 CommonTree leftNode = (CommonTree) child.getChild(0);
                 CommonTree rightNode = (CommonTree) child.getChild(1);
 
-                List<CommonTree> leftStrings = leftNode.getChildren();
+                @SuppressWarnings("unchecked")
+                List<CommonTree> leftStrings = (List<CommonTree>) leftNode.getChildren();
 
                 if (!isAnyUnaryString(leftStrings.get(0))) {
                     throw new ParseException("Left side of ctf expression must be a string"); //$NON-NLS-1$

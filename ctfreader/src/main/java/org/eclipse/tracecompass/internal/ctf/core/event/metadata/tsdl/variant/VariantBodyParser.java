@@ -97,7 +97,8 @@ public final class VariantBodyParser extends AbstractScopedCommonTreeParser {
 
         String variantName = ((Param) param).fName;
         VariantDeclaration variantDeclaration = ((Param) param).fVariantDeclaration;
-        List<CommonTree> variantDeclarations = variantBody.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> variantDeclarations = (List<CommonTree>) variantBody.getChildren();
 
         final DeclarationScope scope = new DeclarationScope(((Param) param).fDeclarationScope, variantName == null ? MetadataStrings.VARIANT : variantName);
         CTFTrace trace = ((Param) param).fTrace;

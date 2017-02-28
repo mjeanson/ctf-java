@@ -125,7 +125,8 @@ public final class StructBodyParser extends AbstractScopedCommonTreeParser {
         String structName = ((Param) param).fName;
         final DeclarationScope scope = new DeclarationScope(((Param) param).fDeclarationScope, structName == null ? MetadataStrings.STRUCT : structName);
         StructDeclaration structDeclaration = ((Param) param).fStructDeclaration;
-        List<CommonTree> structDeclarations = structBody.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> structDeclarations = (List<CommonTree>) structBody.getChildren();
         if (structDeclarations == null) {
             structDeclarations = Collections.emptyList();
         }

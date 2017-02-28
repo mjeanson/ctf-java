@@ -125,8 +125,8 @@ public class IOStructGen {
      * @throws ParseException
      */
     private void parseRoot(CommonTree root) throws ParseException {
-
-        List<CommonTree> children = root.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) root.getChildren();
 
         CommonTree traceNode = null;
         boolean hasStreams = false;
@@ -184,7 +184,8 @@ public class IOStructGen {
         if (!fHasBeenParsed) {
             throw new ParseException("You need to run generate first"); //$NON-NLS-1$
         }
-        List<CommonTree> children = root.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) root.getChildren();
         List<CommonTree> events = new ArrayList<>();
         for (CommonTree child : children) {
             final int type = child.getType();
@@ -218,7 +219,8 @@ public class IOStructGen {
     private void parseTrace(CommonTree traceNode) throws ParseException {
 
         CTFTrace trace = fTrace;
-        List<CommonTree> children = traceNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) traceNode.getChildren();
         if (children == null) {
             throw new ParseException("Trace block is empty"); //$NON-NLS-1$
         }
@@ -259,7 +261,8 @@ public class IOStructGen {
     private void parseRootDeclaration(CommonTree declaration)
             throws ParseException {
 
-        List<CommonTree> children = declaration.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) declaration.getChildren();
 
         for (CommonTree child : children) {
             switch (child.getType()) {

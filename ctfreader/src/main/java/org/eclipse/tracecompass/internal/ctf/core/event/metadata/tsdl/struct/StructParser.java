@@ -142,7 +142,8 @@ public final class StructParser extends AbstractScopedCommonTreeParser {
         final DeclarationScope scope = ((Param) param).fDeclarationScope;
         CommonTree identifier = ((Param) param).fIdentifier;
 
-        List<CommonTree> children = struct.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) struct.getChildren();
 
         /* The return value */
         StructDeclaration structDeclaration = null;

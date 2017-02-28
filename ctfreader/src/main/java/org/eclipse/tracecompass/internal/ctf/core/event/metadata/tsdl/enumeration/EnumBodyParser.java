@@ -63,7 +63,8 @@ public final class EnumBodyParser implements ICommonTreeParser {
         }
         Param parameter = (Param) param;
         EnumDeclaration enumDeclaration = parameter.fEnumDeclaration;
-        List<CommonTree> enumerators = tree.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> enumerators = (List<CommonTree>) tree.getChildren();
         /*
          * Start at -1, so that if the first enumrator has no explicit value, it
          * will choose 0

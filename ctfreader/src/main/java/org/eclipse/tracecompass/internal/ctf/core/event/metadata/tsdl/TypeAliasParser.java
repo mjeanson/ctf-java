@@ -75,7 +75,8 @@ public final class TypeAliasParser extends AbstractScopedCommonTreeParser {
         }
         DeclarationScope scope = ((Param) param).fDeclarationScope;
 
-        List<CommonTree> children = typealias.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) typealias.getChildren();
 
         CommonTree target = null;
         CommonTree alias = null;

@@ -96,7 +96,8 @@ public final class VariantDeclarationParser extends AbstractScopedCommonTreePars
             throw new ParseException("Cannot have empty variant"); //$NON-NLS-1$
         }
         /* Get the type declarator list */
-        List<CommonTree> typeDeclaratorList = typeDeclaratorListNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> typeDeclaratorList = (List<CommonTree>) typeDeclaratorListNode.getChildren();
 
         /*
          * For each type declarator, parse the declaration and add a field to

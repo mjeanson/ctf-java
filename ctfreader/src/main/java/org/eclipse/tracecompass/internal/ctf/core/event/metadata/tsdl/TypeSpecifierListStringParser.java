@@ -45,7 +45,8 @@ public final class TypeSpecifierListStringParser implements ICommonTreeParser {
     @Override
     public StringBuilder parse(CommonTree typeSpecifierList, ICommonTreeParserParameter param) throws ParseException {
         StringBuilder sb = new StringBuilder();
-        List<CommonTree> children = typeSpecifierList.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) typeSpecifierList.getChildren();
 
         boolean firstItem = true;
 

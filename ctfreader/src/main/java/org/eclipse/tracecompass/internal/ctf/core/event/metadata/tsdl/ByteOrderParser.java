@@ -13,6 +13,7 @@ import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.Tsd
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryString;
 
 import java.nio.ByteOrder;
+import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
@@ -97,7 +98,9 @@ public final class ByteOrderParser implements ICommonTreeParser {
         CommonTree firstChild = (CommonTree) byteOrderTree.getChild(0);
 
         if (isUnaryString(firstChild)) {
-            String strval = concatenateUnaryStrings(byteOrderTree.getChildren());
+            @SuppressWarnings("unchecked")
+            List<CommonTree> children = (List<CommonTree>) byteOrderTree.getChildren();
+            String strval = concatenateUnaryStrings(children);
 
             if (strval.equals(MetadataStrings.LE)) {
                 return ByteOrder.LITTLE_ENDIAN;

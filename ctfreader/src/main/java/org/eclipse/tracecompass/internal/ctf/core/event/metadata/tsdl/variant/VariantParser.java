@@ -237,7 +237,8 @@ public final class VariantParser extends AbstractScopedCommonTreeParser {
         }
         final DeclarationScope scope = ((Param) param).fDeclarationScope;
 
-        List<CommonTree> children = variant.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) variant.getChildren();
         VariantDeclaration variantDeclaration = null;
 
         boolean hasName = false;

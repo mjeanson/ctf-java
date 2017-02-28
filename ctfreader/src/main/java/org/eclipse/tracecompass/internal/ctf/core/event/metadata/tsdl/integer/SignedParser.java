@@ -13,6 +13,8 @@ import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.Tsd
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryInteger;
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryString;
 
+import java.util.List;
+
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
@@ -55,7 +57,9 @@ public final class SignedParser implements ICommonTreeParser {
         CommonTree firstChild = (CommonTree) tree.getChild(0);
 
         if (isUnaryString(firstChild)) {
-            String strval = concatenateUnaryStrings(tree.getChildren());
+            @SuppressWarnings("unchecked")
+            List<CommonTree> children = (List<CommonTree>) tree.getChildren();
+            String strval = concatenateUnaryStrings(children);
 
             if (strval.equals(MetadataStrings.TRUE)
                     || strval.equals(MetadataStrings.TRUE2)) {

@@ -99,7 +99,8 @@ public final class EventParser extends AbstractScopedCommonTreeParser {
         }
         Param parameter = (Param) param;
         CTFTrace trace = ((Param) param).fTrace;
-        List<CommonTree> children = eventNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) eventNode.getChildren();
         if (children == null) {
             throw new ParseException("Empty event block"); //$NON-NLS-1$
         }

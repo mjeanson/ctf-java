@@ -98,7 +98,8 @@ public final class StructDeclarationParser extends AbstractScopedCommonTreeParse
         }
 
         /* Get the type declarator list */
-        List<CommonTree> typeDeclaratorList = typeDeclaratorListNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> typeDeclaratorList = (List<CommonTree>) typeDeclaratorListNode.getChildren();
 
         /*
          * For each type declarator, parse the declaration and add a field to

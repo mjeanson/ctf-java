@@ -145,7 +145,8 @@ public final class EnumParser extends AbstractScopedCommonTreeParser {
         Param parameter = (Param) param;
         DeclarationScope scope = parameter.fCurrentScope;
 
-        List<CommonTree> children = theEnum.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) theEnum.getChildren();
 
         /* The return value */
         EnumDeclaration enumDeclaration = null;

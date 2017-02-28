@@ -12,6 +12,8 @@ package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.event;
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
 
+import java.util.List;
+
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
@@ -36,7 +38,9 @@ public final class EventNameParser implements ICommonTreeParser {
         CommonTree firstChild = (CommonTree) tree.getChild(0);
 
         if (isAnyUnaryString(firstChild)) {
-            return concatenateUnaryStrings(tree.getChildren());
+            @SuppressWarnings("unchecked")
+            List<CommonTree> children = (List<CommonTree>) tree.getChildren();
+            return concatenateUnaryStrings(children);
         }
         throw new ParseException("invalid value for event name"); //$NON-NLS-1$
     }

@@ -119,7 +119,8 @@ public final class ClockParser implements ICommonTreeParser {
 
     @Override
     public CTFClock parse(CommonTree clock, ICommonTreeParserParameter unused) throws ParseException {
-        List<CommonTree> children = clock.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) clock.getChildren();
         CTFClock ctfClock = new CTFClock();
         for (CommonTree child : children) {
             final String key = child.getChild(0).getChild(0).getChild(0).getText();

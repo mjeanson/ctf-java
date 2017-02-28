@@ -90,7 +90,8 @@ public final class StreamParser extends AbstractScopedCommonTreeParser {
         CTFTrace trace = ((Param) param).fTrace;
         CTFStream stream = new CTFStream(trace);
 
-        List<CommonTree> children = streamNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) streamNode.getChildren();
         if (children == null) {
             throw new ParseException("Empty stream block"); //$NON-NLS-1$
         }

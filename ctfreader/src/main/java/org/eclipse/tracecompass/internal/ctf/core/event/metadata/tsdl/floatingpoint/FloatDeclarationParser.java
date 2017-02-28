@@ -112,7 +112,8 @@ public final class FloatDeclarationParser implements ICommonTreeParser {
             throw new IllegalArgumentException("Param must be a " + Param.class.getCanonicalName()); //$NON-NLS-1$
         }
         CTFTrace trace = ((Param) param).fTrace;
-        List<CommonTree> children = floatingPoint.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) floatingPoint.getChildren();
 
         /*
          * If the integer has no attributes, then it is missing the size
@@ -140,7 +141,8 @@ public final class FloatDeclarationParser implements ICommonTreeParser {
                 CommonTree leftNode = (CommonTree) child.getChild(0);
                 CommonTree rightNode = (CommonTree) child.getChild(1);
 
-                List<CommonTree> leftStrings = leftNode.getChildren();
+                @SuppressWarnings("unchecked")
+                List<CommonTree> leftStrings = (List<CommonTree>) leftNode.getChildren();
 
                 if (!isAnyUnaryString(leftStrings.get(0))) {
                     throw new ParseException(IDENTIFIER_MUST_BE_A_STRING);

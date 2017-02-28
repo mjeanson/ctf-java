@@ -72,7 +72,8 @@ public final class StringDeclarationParser implements ICommonTreeParser {
      */
     @Override
     public StringDeclaration parse(CommonTree string, ICommonTreeParserParameter unused) throws ParseException {
-        List<CommonTree> children = string.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) string.getChildren();
         StringDeclaration stringDeclaration = null;
 
         if (children == null) {
@@ -90,7 +91,8 @@ public final class StringDeclarationParser implements ICommonTreeParser {
                     CommonTree leftNode = (CommonTree) child.getChild(0);
                     CommonTree rightNode = (CommonTree) child.getChild(1);
 
-                    List<CommonTree> leftStrings = leftNode.getChildren();
+                    @SuppressWarnings("unchecked")
+                    List<CommonTree> leftStrings = (List<CommonTree>) leftNode.getChildren();
 
                     if (!isAnyUnaryString(leftStrings.get(0))) {
                         throw new ParseException("Left side of ctf expression must be a string"); //$NON-NLS-1$

@@ -143,7 +143,8 @@ public final class StreamDeclarationParser extends AbstractScopedCommonTreeParse
         CommonTree leftNode = (CommonTree) streamDecl.getChild(0);
         CommonTree rightNode = (CommonTree) streamDecl.getChild(1);
 
-        List<CommonTree> leftStrings = leftNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> leftStrings = (List<CommonTree>) leftNode.getChildren();
 
         if (!isAnyUnaryString(leftStrings.get(0))) {
             throw new ParseException(IDENTIFIER_MUST_BE_A_STRING);

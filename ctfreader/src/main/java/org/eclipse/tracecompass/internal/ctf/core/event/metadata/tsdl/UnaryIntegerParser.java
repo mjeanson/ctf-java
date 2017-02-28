@@ -45,7 +45,8 @@ public final class UnaryIntegerParser implements ICommonTreeParser {
      */
     @Override
     public Long parse(CommonTree unaryInteger, ICommonTreeParserParameter notUsed) throws ParseException {
-        List<CommonTree> children = unaryInteger.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) unaryInteger.getChildren();
         CommonTree value = children.get(0);
         String strval = value.getText();
 

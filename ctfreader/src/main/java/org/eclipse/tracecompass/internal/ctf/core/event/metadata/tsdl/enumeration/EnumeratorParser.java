@@ -84,7 +84,8 @@ public final class EnumeratorParser implements ICommonTreeParser {
         }
         EnumDeclaration enumDeclaration = ((Param) param).fEnumDeclaration;
 
-        List<CommonTree> children = enumerator.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) enumerator.getChildren();
 
         long low = 0, high = 0;
         boolean valueSpecified = false;

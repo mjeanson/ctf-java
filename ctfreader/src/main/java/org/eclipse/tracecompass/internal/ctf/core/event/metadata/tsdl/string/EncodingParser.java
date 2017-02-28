@@ -12,6 +12,8 @@ package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.string;
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryString;
 
+import java.util.List;
+
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
@@ -46,7 +48,9 @@ public final class EncodingParser implements ICommonTreeParser {
         CommonTree firstChild = (CommonTree) tree.getChild(0);
 
         if (isUnaryString(firstChild)) {
-            String strval = concatenateUnaryStrings(tree.getChildren());
+            @SuppressWarnings("unchecked")
+            List<CommonTree> children = (List<CommonTree>) tree.getChildren();
+            String strval = concatenateUnaryStrings(children);
 
             if (strval.equals(MetadataStrings.UTF8)) {
                 return Encoding.UTF8;

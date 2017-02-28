@@ -41,7 +41,8 @@ public final class PointerListStringParser implements ICommonTreeParser {
     @Override
     public StringBuilder parse(CommonTree pointers, ICommonTreeParserParameter param) {
         StringBuilder sb = new StringBuilder();
-        List<CommonTree> pointerList = pointers.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> pointerList = (List<CommonTree>) pointers.getChildren();
         if (pointers.getChildCount() == 0) {
             return sb;
         }

@@ -91,7 +91,8 @@ public final class EventDeclarationParser extends AbstractScopedCommonTreeParser
         CommonTree leftNode = (CommonTree) eventDecl.getChild(0);
         CommonTree rightNode = (CommonTree) eventDecl.getChild(1);
 
-        List<CommonTree> leftStrings = leftNode.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> leftStrings = (List<CommonTree>) leftNode.getChildren();
 
         if (!isAnyUnaryString(leftStrings.get(0))) {
             throw new ParseException("Left side of CTF assignment must be a string"); //$NON-NLS-1$

@@ -36,7 +36,8 @@ public final class EnvironmentParser implements ICommonTreeParser {
     public Map<String, String> parse(CommonTree environment, ICommonTreeParserParameter param) {
 
         ImmutableMap.Builder<String, String> builder = new ImmutableMap.Builder<>();
-        List<CommonTree> children = environment.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) environment.getChildren();
         for (CommonTree child : children) {
             String left;
             String right;

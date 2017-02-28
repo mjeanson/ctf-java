@@ -13,6 +13,8 @@ import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.Tsd
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryInteger;
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryString;
 
+import java.util.List;
+
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
@@ -56,7 +58,9 @@ public final class BaseParser implements ICommonTreeParser {
             }
             throw new ParseException(INVALID_VALUE_FOR_BASE);
         } else if (isUnaryString(firstChild)) {
-            switch (concatenateUnaryStrings(tree.getChildren())) {
+            @SuppressWarnings("unchecked")
+            List<CommonTree> children = (List<CommonTree>) tree.getChildren();
+            switch (concatenateUnaryStrings(children)) {
             case MetadataStrings.DECIMAL:
             case MetadataStrings.DEC:
             case MetadataStrings.DEC_CTE:

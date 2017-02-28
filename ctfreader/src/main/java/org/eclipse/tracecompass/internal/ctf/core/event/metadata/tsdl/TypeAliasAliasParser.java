@@ -57,8 +57,8 @@ public final class TypeAliasAliasParser implements ICommonTreeParser {
      */
     @Override
     public String parse(CommonTree typeSpecifier, ICommonTreeParserParameter param) throws ParseException {
-
-        List<CommonTree> children = typeSpecifier.getChildren();
+        @SuppressWarnings("unchecked")
+        List<CommonTree> children = (List<CommonTree>) typeSpecifier.getChildren();
 
         CommonTree typeSpecifierList = null;
         CommonTree typeDeclaratorList = null;
@@ -91,7 +91,8 @@ public final class TypeAliasAliasParser implements ICommonTreeParser {
 
             typeDeclarator = (CommonTree) typeDeclaratorList.getChild(0);
 
-            List<CommonTree> typeDeclaratorChildren = typeDeclarator.getChildren();
+            @SuppressWarnings("unchecked")
+            List<CommonTree> typeDeclaratorChildren = (List<CommonTree>) typeDeclarator.getChildren();
 
             for (CommonTree child : typeDeclaratorChildren) {
                 switch (child.getType()) {

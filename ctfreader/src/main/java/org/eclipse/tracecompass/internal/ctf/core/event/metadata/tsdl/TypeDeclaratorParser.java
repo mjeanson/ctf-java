@@ -105,14 +105,14 @@ public final class TypeDeclaratorParser extends AbstractScopedCommonTreeParser {
         CommonTree typeSpecifierList = ((Param) param).fListNode;
 
         IDeclaration declaration = null;
-        List<CommonTree> children = null;
         List<@NonNull CommonTree> pointers = new LinkedList<>();
         List<CommonTree> lengths = new LinkedList<>();
         CommonTree identifier = null;
 
         /* Separate the tokens by type */
         if (typeDeclarator != null) {
-            children = typeDeclarator.getChildren();
+            @SuppressWarnings("unchecked")
+            List<CommonTree> children = (List<CommonTree>) typeDeclarator.getChildren();
             for (CommonTree child : children) {
 
                 switch (child.getType()) {
@@ -152,7 +152,8 @@ public final class TypeDeclaratorParser extends AbstractScopedCommonTreeParser {
                  * By looking at the first expression, we can determine whether
                  * it is an array or a sequence.
                  */
-                List<CommonTree> lengthChildren = length.getChildren();
+                @SuppressWarnings("unchecked")
+                List<CommonTree> lengthChildren = (List<CommonTree>) length.getChildren();
 
                 CommonTree first = lengthChildren.get(0);
                 if (isUnaryInteger(first)) {
