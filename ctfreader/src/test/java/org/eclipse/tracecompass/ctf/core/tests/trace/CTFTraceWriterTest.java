@@ -19,11 +19,12 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.net.URISyntaxException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
 import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
@@ -32,6 +33,7 @@ import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceWriter;
 import org.eclipse.tracecompass.internal.ctf.core.trace.Utils;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -48,7 +50,7 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class CTFTraceWriterTest {
 
-    private static File fTempDir;
+    private static Path fTempDir;
 
         // Trace details
         private static final long CLOCK_OFFSET = 1332166405241713987L;
@@ -134,25 +136,20 @@ public class CTFTraceWriterTest {
 
     @BeforeClass
     public static void beforeClass() {
-        String property = System.getProperty("osgi.instance.area"); //$NON-NLS-1$
-        File dir = null;
-        if (property != null) {
-            try {
-                dir = URIUtil.toFile(URIUtil.fromString(property));
-                dir = new File(dir.getAbsolutePath() + File.separator);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-            } catch (URISyntaxException e) {
+        try {
+            fTempDir = Files.createTempDirectory("testcases"); //$NON-NLS-1$
+            if (!Files.exists(fTempDir)) {
+                Files.createDirectories(fTempDir);
             }
+        } catch (IOException e) {
+            fail(e.getMessage());
         }
-        if (dir == null) {
-            dir = new File(System.getProperty("java.io.tmpdir")); //$NON-NLS-1$)
-        }
-        String tempDir = dir.getAbsolutePath() + File.separator + "testcases" + File.separator;
-        fTempDir = new File(tempDir);
-        if (!fTempDir.exists()) {
-            fTempDir.mkdirs();
+    }
+
+    @AfterClass
+    public static void afterClass() {
+        if (fTempDir != null) {
+            CtfTestTraceExtractor.deleteDirectoryRecursively(fTempDir);
         }
     }
 
@@ -220,7 +217,7 @@ public class CTFTraceWriterTest {
     }
 
     private static String createTraceName(String testCase) {
-        return fTempDir.getAbsolutePath() + File.separator + testCase.toString();
+        return fTempDir.toFile().getAbsolutePath() + File.separator + testCase.toString();
     }
 
 }
