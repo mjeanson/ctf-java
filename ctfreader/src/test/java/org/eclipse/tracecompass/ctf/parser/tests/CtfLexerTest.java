@@ -52,7 +52,7 @@ public class CtfLexerTest {
         tokens.clear();
         for (;;) {
           Token token = lexer.nextToken();
-          if (token == Token.EOF_TOKEN) {
+          if (token.getType() == Token.EOF) {
             return;
           }
           tokens.add(token);
