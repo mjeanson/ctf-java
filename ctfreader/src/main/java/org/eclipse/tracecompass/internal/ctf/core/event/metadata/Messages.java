@@ -11,21 +11,12 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata;
 
-import org.eclipse.osgi.util.NLS;
+@SuppressWarnings({ "javadoc", "nls" })
+public final class Messages {
 
-@SuppressWarnings("javadoc")
-public final class Messages extends NLS {
-
-    private static final String BUNDLE_NAME = "org.eclipse.tracecompass.internal.ctf.core.event.metadata.messages"; //$NON-NLS-1$
-
-    public static String IOStructGen_UnknownTraceAttributeWarning;
-    public static String IOStructGen_UnknownStreamAttributeWarning;
-    public static String IOStructGen_UnknownIntegerAttributeWarning;
-
-    static {
-        // initialize resource bundle
-        NLS.initializeMessages(BUNDLE_NAME, Messages.class);
-    }
+    public static String IOStructGen_UnknownTraceAttributeWarning = "Unknown trace attribute:";
+    public static String IOStructGen_UnknownStreamAttributeWarning = "Unknown stream attribute:";
+    public static String IOStructGen_UnknownIntegerAttributeWarning = "nknown integer attribute:";
 
     private Messages() {
     }
