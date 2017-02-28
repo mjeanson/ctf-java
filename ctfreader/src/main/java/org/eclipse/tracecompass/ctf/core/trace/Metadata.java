@@ -15,6 +15,8 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,7 +39,6 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.RewriteCardinalityException;
-import org.eclipse.tracecompass.common.core.NonNullUtils;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.parser.CTFLexer;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
@@ -261,7 +262,7 @@ public class Metadata {
         CommonTree tree = createAST(metadataTextInput);
 
         /* Generate IO structures (declarations) */
-        fTreeParser = new IOStructGen(tree, NonNullUtils.checkNotNull(fTrace));
+        fTreeParser = new IOStructGen(tree, requireNonNull(fTrace));
         fTreeParser.generate();
         /* store locally in case of concurrent modification */
         ByteOrder detectedByteOrder = getDetectedByteOrder();

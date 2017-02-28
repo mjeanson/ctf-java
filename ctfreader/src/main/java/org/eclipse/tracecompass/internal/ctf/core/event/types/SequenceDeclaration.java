@@ -11,7 +11,7 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.types;
 
-import static org.eclipse.tracecompass.common.core.NonNullUtils.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.List;
@@ -132,7 +132,7 @@ public class SequenceDeclaration extends CompoundDeclaration {
         Builder<@NonNull Definition> definitions = new ImmutableList.Builder<>();
         for (int i = 0; i < length; i++) {
             /* We should not have inserted any null values */
-            String elemName = checkNotNull(paths.get(i));
+            String elemName = requireNonNull(paths.get(i));
             definitions.add(fElemType.createDefinition(definitionScope, elemName, input));
         }
         List<@NonNull Definition> list = definitions.build();

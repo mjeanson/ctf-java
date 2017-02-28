@@ -14,7 +14,7 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.trace;
 
-import static org.eclipse.tracecompass.common.core.NonNullUtils.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -80,7 +80,7 @@ public class StreamInputPacketIndex {
      */
     public void appendAll(Collection<ICTFPacketDescriptor> preParsedIndex) {
         for (ICTFPacketDescriptor sipie : preParsedIndex) {
-            append(checkNotNull(sipie));
+            append(requireNonNull(sipie));
         }
     }
 

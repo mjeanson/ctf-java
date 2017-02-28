@@ -13,7 +13,7 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
-import static org.eclipse.tracecompass.common.core.NonNullUtils.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -115,7 +115,7 @@ public class CTFTraceReader implements AutoCloseable {
          */
         fStartTime = 0;
         if (hasMoreEvents()) {
-            fStartTime = checkNotNull(getTopStream().getCurrentEvent()).getTimestamp();
+            fStartTime = requireNonNull(getTopStream().getCurrentEvent()).getTimestamp();
             setEndTime(fStartTime);
         }
     }
@@ -214,7 +214,7 @@ public class CTFTraceReader implements AutoCloseable {
                 /*
                  * Create a reader and add it to the group.
                  */
-                fStreamInputReaders.add(new CTFStreamInputReader(checkNotNull(streamInput)));
+                fStreamInputReaders.add(new CTFStreamInputReader(requireNonNull(streamInput)));
             }
         }
 
@@ -248,9 +248,9 @@ public class CTFTraceReader implements AutoCloseable {
                 /*
                  * Create a reader to check if it already exists in the list. If it doesn't, add it.
                  */
-                try (CTFStreamInputReader streamInputReader = new CTFStreamInputReader(checkNotNull(streamInput))) {
+                try (CTFStreamInputReader streamInputReader = new CTFStreamInputReader(requireNonNull(streamInput))) {
                     if (!fStreamInputReaders.contains(streamInputReader)) {
-                        CTFStreamInputReader streamInputReaderToAdd = new CTFStreamInputReader(checkNotNull(streamInput));
+                        CTFStreamInputReader streamInputReaderToAdd = new CTFStreamInputReader(requireNonNull(streamInput));
                         streamInputReaderToAdd.readNextEvent();
                         fStreamInputReaders.add(streamInputReaderToAdd);
                         readers.add(streamInputReaderToAdd);
@@ -368,7 +368,7 @@ public class CTFTraceReader implements AutoCloseable {
              * We're in OK, there's a guaranteed top#getCurrentEvent() unless another
              * thread does something bad.
              */
-            IEventDefinition currentEvent = checkNotNull(top.getCurrentEvent());
+            IEventDefinition currentEvent = requireNonNull(top.getCurrentEvent());
             final long topEnd = fTrace.timestampCyclesToNanos(currentEvent.getTimestamp());
             setEndTime(Math.max(topEnd, getEndTime()));
             fEventCountPerTraceFile[top.getName()]++;
