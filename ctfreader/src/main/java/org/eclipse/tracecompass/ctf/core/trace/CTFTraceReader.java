@@ -22,11 +22,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
-import org.eclipse.tracecompass.internal.ctf.core.Activator;
 import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputReaderTimestampComparator;
 
 /**
@@ -37,6 +37,8 @@ import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputReaderTimesta
  * @author Alexandre Montplaisir
  */
 public class CTFTraceReader implements AutoCloseable {
+
+    private static final Logger LOGGER = Logger.getLogger(CTFTraceReader.class.getName());
 
     private static final int LINE_LENGTH = 60;
 
@@ -145,7 +147,7 @@ public class CTFTraceReader implements AutoCloseable {
                     try {
                         reader.close();
                     } catch (IOException e) {
-                        Activator.logError(e.getMessage(), e);
+                        LOGGER.severe(() -> e.getMessage());
                     }
                 }
             }
@@ -254,7 +256,7 @@ public class CTFTraceReader implements AutoCloseable {
                         readers.add(streamInputReaderToAdd);
                     }
                 } catch (IOException e) {
-                    Activator.logError(e.getMessage(), e);
+                    LOGGER.severe(() -> e.getMessage());
                 }
             }
         }
@@ -497,7 +499,7 @@ public class CTFTraceReader implements AutoCloseable {
             }
 
             sb.append("]\t" + fEventCountPerTraceFile[se.getName()] + " Events"); //$NON-NLS-1$//$NON-NLS-2$
-            Activator.log(sb.toString());
+            LOGGER.info(() -> sb.toString());
         }
     }
 

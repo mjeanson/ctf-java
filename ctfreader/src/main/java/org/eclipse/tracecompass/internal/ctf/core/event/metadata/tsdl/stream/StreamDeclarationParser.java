@@ -12,10 +12,10 @@ import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.Tsd
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.CTFStrings;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
@@ -24,7 +24,6 @@ import org.eclipse.tracecompass.ctf.core.event.types.IEventHeaderDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
-import org.eclipse.tracecompass.internal.ctf.core.Activator;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedCommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.Messages;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
@@ -68,6 +67,8 @@ import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
  *
  */
 public final class StreamDeclarationParser extends AbstractScopedCommonTreeParser {
+
+    private static final Logger LOGGER = Logger.getLogger(StreamDeclarationParser.class.getName());
 
     private static final String IDENTIFIER_MUST_BE_A_STRING = "Left side of CTF assignment must be a string"; //$NON-NLS-1$
     private static final String PACKET_CONTEXT = "packet.context "; //$NON-NLS-1$
@@ -223,7 +224,7 @@ public final class StreamDeclarationParser extends AbstractScopedCommonTreeParse
 
             stream.setPacketContext((StructDeclaration) packetContextDecl);
         } else {
-            Activator.log(IStatus.WARNING, Messages.IOStructGen_UnknownStreamAttributeWarning + ' ' + left);
+            LOGGER.warning(() -> Messages.IOStructGen_UnknownStreamAttributeWarning + ' ' + left);
         }
         return stream;
     }

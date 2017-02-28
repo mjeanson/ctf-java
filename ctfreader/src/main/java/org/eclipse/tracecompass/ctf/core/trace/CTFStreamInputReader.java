@@ -19,17 +19,16 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.tracecompass.common.core.NonNullUtils;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.internal.ctf.core.Activator;
 import org.eclipse.tracecompass.internal.ctf.core.SafeMappedByteBuffer;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFPacketReader;
 import org.eclipse.tracecompass.internal.ctf.core.trace.NullPacketReader;
@@ -43,6 +42,8 @@ import org.eclipse.tracecompass.internal.ctf.core.trace.NullPacketReader;
  */
 @NonNullByDefault
 public class CTFStreamInputReader implements AutoCloseable {
+
+    private static final Logger LOGGER = Logger.getLogger(CTFStreamInputReader.class.getName());
 
     private static final int BITS_PER_BYTE = Byte.SIZE;
 
@@ -374,7 +375,7 @@ public class CTFStreamInputReader implements AutoCloseable {
                 goToNextPacket();
             } catch (CTFException e) {
                 // do nothing here
-                Activator.log(e.getMessage());
+                LOGGER.severe(() -> e.getMessage());
             }
         }
         if (fPacketReader.getCurrentPacket() == null) {
@@ -543,7 +544,7 @@ public class CTFStreamInputReader implements AutoCloseable {
     @Override
     public String toString() {
         // this helps debugging
-        return fId + ' ' + NonNullUtils.nullToEmptyString(fCurrentEvent);
+        return fId + " " + fCurrentEvent; //$NON-NLS-1$
     }
 
 }
