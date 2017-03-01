@@ -28,8 +28,10 @@ import java.nio.file.attribute.FileAttribute;
 import java.util.UUID;
 
 import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -99,6 +101,13 @@ public class CTFTraceGrowingStreamTest {
             fos.write(fPackets[0]);
         }
         fFixture = new CTFTrace(fCtfDirectory.toString());
+    }
+
+    @After
+    public void cleanup() {
+        if (fCtfDirectory != null) {
+            CtfTestTraceExtractor.deleteDirectoryRecursively(fCtfDirectory);
+        }
     }
 
     private void setupPacket(byte data[], int value) {
