@@ -33,7 +33,7 @@ public class UtilsTest {
      */
     @Test
     public void testMakeUUID() {
-        int byteSize = 32;
+        int byteSize = 16;
         byte[] bytes = new byte[byteSize];
         for (int i = 0; i < byteSize; i++) {
             bytes[i] = (byte) (i);
