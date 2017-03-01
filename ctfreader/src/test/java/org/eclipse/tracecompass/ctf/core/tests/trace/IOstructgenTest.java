@@ -22,14 +22,18 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.IOStructGen;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -256,16 +260,22 @@ public class IOstructgenTest {
     private static final String allDressedTSDL = metadataDecs + environmentMD + clockMD
             + ctfStart + ctfHeaders + ctfBody + enumMd;
 
-    static final String tempTraceDir;
-    static {
-        String dir;
+    private static Path tempTraceDir;
+
+    @BeforeClass
+    public static void setupClass() {
         try {
-            dir = Files.createTempDirectory("tempTrace").toString();
+            tempTraceDir = Files.createTempDirectory("tempTrace");
         } catch (IOException e) {
-            dir = null;
             e.printStackTrace();
         }
-        tempTraceDir = dir;
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        if (tempTraceDir != null) {
+            CtfTestTraceExtractor.deleteDirectoryRecursively(tempTraceDir);
+        }
     }
 
     private static final int DATA_SIZE = 4096;
@@ -329,7 +339,7 @@ public class IOstructgenTest {
     }
 
     private static void createDummyTrace(String metadata) {
-        File dir = new File(tempTraceDir);
+        File dir = new File(tempTraceDir.toString());
         if (dir.exists()) {
             deltree(dir);
         }
@@ -413,7 +423,7 @@ public class IOstructgenTest {
     @Test
     public void TSDLSimpleTest() throws CTFException {
         createDummyTrace(simpleTSDL);
-        trace = new CTFTrace(tempTraceDir);
+        trace = new CTFTrace(tempTraceDir.toString());
         assertNotNull(trace);
     }
 
@@ -426,7 +436,7 @@ public class IOstructgenTest {
     @Test
     public void TSDLEnvironmentTest() throws CTFException {
         createDummyTrace(envTSDL);
-        trace = new CTFTrace(tempTraceDir);
+        trace = new CTFTrace(tempTraceDir.toString());
         assertNotNull(trace);
     }
 
@@ -439,7 +449,7 @@ public class IOstructgenTest {
     @Test
     public void TSDLEnumTest() throws CTFException {
         createDummyTrace(enumTSDL);
-        trace = new CTFTrace(tempTraceDir);
+        trace = new CTFTrace(tempTraceDir.toString());
         assertNotNull(trace);
     }
 
@@ -452,7 +462,7 @@ public class IOstructgenTest {
     @Test
     public void TSDLClockTest() throws CTFException {
         createDummyTrace(clockTSDL);
-        trace = new CTFTrace(tempTraceDir);
+        trace = new CTFTrace(tempTraceDir.toString());
         assertNotNull(trace);
     }
 
@@ -465,7 +475,7 @@ public class IOstructgenTest {
     @Test
     public void TSDLContextTest() throws CTFException {
         createDummyTrace(contextTSDL);
-        trace = new CTFTrace(tempTraceDir);
+        trace = new CTFTrace(tempTraceDir.toString());
         assertNotNull(trace);
     }
 
@@ -478,7 +488,7 @@ public class IOstructgenTest {
     @Test
     public void TSDLAllTest() throws CTFException {
         createDummyTrace(allDressedTSDL);
-        trace = new CTFTrace(tempTraceDir);
+        trace = new CTFTrace(tempTraceDir.toString());
         assertNotNull(trace);
 
         final List<IEventDeclaration> eventDeclarations = new ArrayList<>(trace.getEventDeclarations(0L));
