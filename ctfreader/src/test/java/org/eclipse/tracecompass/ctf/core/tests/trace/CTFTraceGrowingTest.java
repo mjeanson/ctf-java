@@ -29,7 +29,9 @@ import org.eclipse.tracecompass.ctf.core.tests.shared.LttngTraceGenerator;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
 import org.eclipse.tracecompass.ctf.core.trace.Metadata;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -40,8 +42,19 @@ import org.junit.Test;
  */
 public class CTFTraceGrowingTest {
 
-    private final String fPathName = LttngTraceGenerator.getPath();
+    private static String fPathName;
+
     private final CTFTrace fixture = new CTFTrace();
+
+    @BeforeClass
+    public static void setupClass() {
+        fPathName = LttngTraceGenerator.generateTrace();
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        LttngTraceGenerator.cleanupTrace();
+    }
 
     /**
      * Init

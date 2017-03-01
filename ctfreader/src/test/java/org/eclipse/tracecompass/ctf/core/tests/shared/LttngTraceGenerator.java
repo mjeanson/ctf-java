@@ -23,7 +23,6 @@ import java.nio.channels.FileChannel;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
@@ -174,6 +173,8 @@ public class LttngTraceGenerator {
     private static final String TRACES_DIRECTORY = "traces";
     private static final String TRACE_NAME = "synthetic-trace";
 
+    private static Path fTracePath;
+
     /**
      * Main, not always needed
      *
@@ -200,12 +201,22 @@ public class LttngTraceGenerator {
      *
      * @return the path
      */
-    public static String getPath() {
-        Path tracePath = Paths.get("..", "..", "ctf", "org.eclipse.tracecompass.ctf.core.tests", TRACES_DIRECTORY, TRACE_NAME);
-        tracePath = tracePath.toAbsolutePath();
-        File file = tracePath.toFile();
-        generateLttngTrace(file);
-        return file.getAbsolutePath();
+    public static String generateTrace() {
+        try {
+            Path tracePath = Files.createTempDirectory(TRACE_NAME);
+            fTracePath = tracePath.toAbsolutePath();
+            File file = tracePath.toFile();
+            generateLttngTrace(file);
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void cleanupTrace() {
+        if (fTracePath != null) {
+            CtfTestTraceExtractor.deleteDirectoryRecursively(fTracePath);
+        }
     }
 
     /**
