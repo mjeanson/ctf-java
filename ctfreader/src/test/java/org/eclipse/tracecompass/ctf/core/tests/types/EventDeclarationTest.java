@@ -22,14 +22,16 @@ import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.LostEventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -43,8 +45,19 @@ import org.junit.Test;
 public class EventDeclarationTest {
 
     private static final CtfTestTrace testTrace = CtfTestTrace.KERNEL;
+    private static CtfTestTraceExtractor testTraceWrapper;
 
     private EventDeclaration fixture;
+
+    @BeforeClass
+    public static void setupClass() {
+        testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(testTrace);
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        testTraceWrapper.close();
+    }
 
     /**
      * Perform pre-test initialization.
@@ -57,7 +70,7 @@ public class EventDeclarationTest {
         fixture.setContext(new StructDeclaration(1L));
         fixture.setId(1L);
         fixture.setFields(new StructDeclaration(1L));
-        fixture.setStream(new CTFStream(CtfTestTraceUtils.getTrace(testTrace)));
+        fixture.setStream(new CTFStream(testTraceWrapper.getTrace()));
         fixture.setName("");
     }
 
@@ -101,7 +114,7 @@ public class EventDeclarationTest {
         obj.setContext(new StructDeclaration(1L));
         obj.setId(1L);
         obj.setFields(new StructDeclaration(1L));
-        obj.setStream(new CTFStream(CtfTestTraceUtils.getTrace(testTrace)));
+        obj.setStream(new CTFStream(testTraceWrapper.getTrace()));
         obj.setName("");
 
         assertTrue(fixture.equals(fixture));
@@ -317,7 +330,7 @@ public class EventDeclarationTest {
      */
     @Test
     public void testEventDefinition() throws CTFException {
-        CTFTrace trace = CtfTestTraceUtils.getTrace(testTrace);
+        CTFTrace trace = testTraceWrapper.getTrace();
         IEventDefinition ed = null;
         try (CTFTraceReader tr = new CTFTraceReader(trace);) {
             tr.advance();

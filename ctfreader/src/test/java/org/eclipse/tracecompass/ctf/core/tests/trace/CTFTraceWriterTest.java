@@ -26,7 +26,7 @@ import java.util.List;
 import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceWriter;
@@ -170,48 +170,48 @@ public class CTFTraceWriterTest {
      */
     @Test
     public void testKernelTrace() {
-            try {
-                CTFTrace trace = CtfTestTraceUtils.getTrace(CtfTestTrace.KERNEL);
-                CTFTraceWriter ctfWriter = new CTFTraceWriter(requireNonNull(trace));
-                String traceName = createTraceName(fName);
-                ctfWriter.copyPackets(fStartTime, fEndTime, traceName);
+        try (CtfTestTraceExtractor testTrace = CtfTestTraceExtractor.extractTestTrace(CtfTestTrace.KERNEL)) {
+            CTFTrace trace = testTrace.getTrace();
+            CTFTraceWriter ctfWriter = new CTFTraceWriter(requireNonNull(trace));
+            String traceName = createTraceName(fName);
+            ctfWriter.copyPackets(fStartTime, fEndTime, traceName);
 
-                File metadata = new File(traceName + Utils.SEPARATOR + "metadata");
-                assertTrue("metadata", metadata.exists());
+            File metadata = new File(traceName + Utils.SEPARATOR + "metadata");
+            assertTrue("metadata", metadata.exists());
 
-                CTFTrace outTrace = new CTFTrace(traceName);
-                int count = 0;
-                Long start = null;
-                long end = 0;
-                try (CTFTraceReader reader = new CTFTraceReader(outTrace)) {
-                    while(reader.hasMoreEvents()) {
-                        count++;
-                        IEventDefinition def = reader.getCurrentEventDef();
-                        end = def.getTimestamp();
-                        if (start == null) {
-                            start = outTrace.getClock().getClockOffset() + reader.getStartTime();
-                        }
-                        reader.advance();
+            CTFTrace outTrace = new CTFTrace(traceName);
+            int count = 0;
+            Long start = null;
+            long end = 0;
+            try (CTFTraceReader reader = new CTFTraceReader(outTrace)) {
+                while (reader.hasMoreEvents()) {
+                    count++;
+                    IEventDefinition def = reader.getCurrentEventDef();
+                    end = def.getTimestamp();
+                    if (start == null) {
+                        start = outTrace.getClock().getClockOffset() + reader.getStartTime();
                     }
-                    end = outTrace.getClock().getClockOffset() + end;
+                    reader.advance();
                 }
-
-                if (fFirstEventTime >= 0) {
-                    assertEquals("first event time", Long.valueOf(fFirstEventTime), start);
-                }
-                if (fLastEventTime >= 0) {
-                    assertEquals("last event time", fLastEventTime, end);
-                }
-                assertEquals(toString(), fNbEvents, count);
-
-                if (fNbEvents == 0) {
-                    assertFalse("channel0", getChannelFile(traceName, 0).exists());
-                    assertFalse("channel1", getChannelFile(traceName, 1).exists());
-                }
-
-            } catch (CTFException e) {
-                fail(e.getMessage());
+                end = outTrace.getClock().getClockOffset() + end;
             }
+
+            if (fFirstEventTime >= 0) {
+                assertEquals("first event time", Long.valueOf(fFirstEventTime), start);
+            }
+            if (fLastEventTime >= 0) {
+                assertEquals("last event time", fLastEventTime, end);
+            }
+            assertEquals(toString(), fNbEvents, count);
+
+            if (fNbEvents == 0) {
+                assertFalse("channel0", getChannelFile(traceName, 0).exists());
+                assertFalse("channel1", getChannelFile(traceName, 1).exists());
+            }
+
+        } catch (CTFException e) {
+            fail(e.getMessage());
+        }
     }
 
     private static File getChannelFile(String path, int id) {

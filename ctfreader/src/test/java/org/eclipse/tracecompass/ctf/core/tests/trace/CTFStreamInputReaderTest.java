@@ -27,7 +27,7 @@ import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StringDefinition;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFResponse;
 import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInput;
 import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInputReader;
@@ -37,7 +37,9 @@ import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDefinition;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -50,8 +52,19 @@ import org.junit.Test;
 public class CTFStreamInputReaderTest {
 
     private static final CtfTestTrace testTrace = CtfTestTrace.KERNEL;
+    private static CtfTestTraceExtractor testTraceWrapper;
 
     private CTFStreamInputReader fixture;
+
+    @BeforeClass
+    public static void setupClass() {
+        testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(testTrace);
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        testTraceWrapper.close();
+    }
 
     /**
      * Perform pre-test initialization.
@@ -73,8 +86,7 @@ public class CTFStreamInputReaderTest {
     }
 
     private static CTFStreamInputReader getStreamInputReader() throws CTFException {
-        CTFTrace trace = CtfTestTraceUtils.getTrace(testTrace);
-        ICTFStream s = trace.getStream((long) 0);
+        ICTFStream s = testTraceWrapper.getTrace().getStream((long) 0);
         Set<CTFStreamInput> streamInput = s.getStreamInputs();
         CTFStreamInputReader retVal = null;
         for (CTFStreamInput si : streamInput) {

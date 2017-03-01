@@ -24,7 +24,7 @@ import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.CTFStrings;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
 import org.junit.Rule;
@@ -84,7 +84,8 @@ public class TraceReadAllTracesTest {
     @Test
     public void readTraces() {
         if (fTraceEnum.getNbEvents() != -1) {
-            try (CTFTraceReader reader = new CTFTraceReader(CtfTestTraceUtils.getTrace(fTraceEnum))) {
+            try (CtfTestTraceExtractor testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(fTraceEnum);
+                    CTFTraceReader reader = new CTFTraceReader(testTraceWrapper.getTrace());) {
                 IEventDefinition currentEventDef = reader.getCurrentEventDef();
                 double start = currentEventDef.getTimestamp();
                 long count = 0;
@@ -96,7 +97,8 @@ public class TraceReadAllTracesTest {
                     if (currentEventDef != null) {
                         end = currentEventDef.getTimestamp();
                         if (currentEventDef.getDeclaration().getName().equals(CTFStrings.LOST_EVENT_NAME)) {
-                            count += ((IntegerDefinition) currentEventDef.getFields().getDefinition(CTFStrings.LOST_EVENTS_FIELD)).getValue() - 1;
+                            count += ((IntegerDefinition) currentEventDef.getFields()
+                                    .getDefinition(CTFStrings.LOST_EVENTS_FIELD)).getValue() - 1;
                         }
                     }
                 }

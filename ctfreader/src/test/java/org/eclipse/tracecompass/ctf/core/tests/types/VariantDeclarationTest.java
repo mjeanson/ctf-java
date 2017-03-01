@@ -33,9 +33,11 @@ import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
 import org.eclipse.tracecompass.ctf.core.event.types.VariantDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.VariantDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -48,8 +50,19 @@ import org.junit.Test;
 public class VariantDeclarationTest {
 
     private static final CtfTestTrace testTrace = CtfTestTrace.KERNEL;
+    private static CtfTestTraceExtractor testTraceWrapper;
 
     private VariantDeclaration fixture;
+
+    @BeforeClass
+    public static void setupClass() {
+        testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(testTrace);
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        testTraceWrapper.close();
+    }
 
     /**
      * Perform pre-test initialization.
@@ -83,7 +96,7 @@ public class VariantDeclarationTest {
                 );
         VariantDefinition variantDefinition = new VariantDefinition(
                 variantDeclaration,
-                CtfTestTraceUtils.getTrace(testTrace),
+                testTraceWrapper.getTrace(),
                 "tag",
                 "tag",
                 new StringDefinition(

@@ -28,13 +28,15 @@ import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.CTFClock;
 import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableMap;
@@ -48,20 +50,27 @@ import com.google.common.collect.ImmutableMap;
 public class CTFTraceTest {
 
     private static final CtfTestTrace testTrace = CtfTestTrace.KERNEL;
+    private static CtfTestTraceExtractor testTraceWrapper;
 
     private CTFTrace fixture;
+
+    @BeforeClass
+    public static void setupClass() {
+        testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(testTrace);
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        testTraceWrapper.close();
+    }
 
     /**
      * Perform pre-test initialization.
      */
     @Before
     public void setUp() {
-        try {
-            fixture = CtfTestTraceUtils.getTrace(testTrace);
-        } catch (CTFException e) {
-            /* If the assumeTrue() call passed, this should not happen. */
-            fail();
-        }
+        fixture = testTraceWrapper.getTrace();
+
         fixture.setMinor(1L);
         fixture.setUUID(UUID.randomUUID());
         fixture.setPacketHeader(new StructDeclaration(1L));
@@ -74,12 +83,8 @@ public class CTFTraceTest {
      */
     @Test
     public void testOpen_existing() {
-        try {
-            CTFTrace result = CtfTestTraceUtils.getTrace(testTrace);
-            assertNotNull(result.getUUID());
-        } catch (CTFException e) {
-            fail();
-        }
+        CTFTrace result = testTraceWrapper.getTrace();
+        assertNotNull(result.getUUID());
     }
 
     /**
@@ -115,11 +120,9 @@ public class CTFTraceTest {
 
         // Add a stream
         try {
-            CTFStream stream = new CTFStream(CtfTestTraceUtils.getTrace(testTrace));
+            CTFStream stream = new CTFStream(testTraceWrapper.getTrace());
             stream.setId(1234);
             fixture.addStream(stream);
-        } catch (CTFException e) {
-            fail();
         } catch (ParseException e) {
             fail();
         }
@@ -254,22 +257,18 @@ public class CTFTraceTest {
      */
     @Test
     public void testPacketHeaderIsSet_invalid() {
-        try {
-            CTFTrace fixture2 = CtfTestTraceUtils.getTrace(testTrace);
-            fixture2.setMinor(1L);
-            fixture2.setUUID(UUID.randomUUID());
-            /*
-             * it's null here!
-             */
-            fixture2.setPacketHeader((StructDeclaration) null);
-            fixture2.setMajor(1L);
-            fixture2.setByteOrder(ByteOrder.BIG_ENDIAN);
+        CTFTrace fixture2 = testTraceWrapper.getTrace();
+        fixture2.setMinor(1L);
+        fixture2.setUUID(UUID.randomUUID());
+        /*
+         * it's null here!
+         */
+        fixture2.setPacketHeader((StructDeclaration) null);
+        fixture2.setMajor(1L);
+        fixture2.setByteOrder(ByteOrder.BIG_ENDIAN);
 
-            boolean result = fixture2.packetHeaderIsSet();
-            assertFalse(result);
-        } catch (CTFException e) {
-            fail();
-        }
+        boolean result = fixture2.packetHeaderIsSet();
+        assertFalse(result);
     }
 
     /**

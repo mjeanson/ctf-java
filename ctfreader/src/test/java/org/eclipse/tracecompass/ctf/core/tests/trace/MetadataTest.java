@@ -26,12 +26,14 @@ import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.ISimpleDatatypeDeclaration;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.ctf.core.trace.Metadata;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.google.common.collect.Iterables;
@@ -222,8 +224,19 @@ public class MetadataTest {
             + " fields := struct field { INT data ; };"
             + "};";
 
+    private static CtfTestTraceExtractor testTraceWrapper;
 
     private Metadata fixture;
+
+    @BeforeClass
+    public static void setupClass() {
+        testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(testTrace);
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        testTraceWrapper.close();
+    }
 
     /**
      * Perform pre-test initialization.
@@ -232,7 +245,7 @@ public class MetadataTest {
      */
     @Before
     public void setUp() throws CTFException {
-        fixture = new Metadata(CtfTestTraceUtils.getTrace(testTrace));
+        fixture = new Metadata(testTraceWrapper.getTrace());
     }
 
     /**
@@ -342,8 +355,8 @@ public class MetadataTest {
     @Test
     public void testParse() throws CTFException {
         setUp();
-        assertEquals(new UUID(0xd18e637435a1cd42L, 0x8e70a9cffa712793L), CtfTestTraceUtils.getTrace(testTrace).getUUID());
-        assertEquals(1332166405241713920.0, CtfTestTraceUtils.getTrace(testTrace).getClock().getClockOffset(), 200.0);
-        assertEquals(8, CtfTestTraceUtils.getTrace(testTrace).getEnvironment().size());
+        assertEquals(new UUID(0xd18e637435a1cd42L, 0x8e70a9cffa712793L), testTraceWrapper.getTrace().getUUID());
+        assertEquals(1332166405241713920.0, testTraceWrapper.getTrace().getClock().getClockOffset(), 200.0);
+        assertEquals(8, testTraceWrapper.getTrace().getEnvironment().size());
     }
 }

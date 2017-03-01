@@ -18,11 +18,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -36,8 +38,19 @@ import org.junit.Test;
 public class CTFTraceReaderTest {
 
     private static final CtfTestTrace testTrace = CtfTestTrace.KERNEL;
+    private static CtfTestTraceExtractor testTraceWrapper;
 
     private CTFTraceReader fixture;
+
+    @BeforeClass
+    public static void setupClass() {
+        testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(testTrace);
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        testTraceWrapper.close();
+    }
 
     /**
      * Perform pre-test initialization.
@@ -46,7 +59,7 @@ public class CTFTraceReaderTest {
      */
     @Before
     public void setUp() throws CTFException {
-        fixture = new CTFTraceReader(CtfTestTraceUtils.getTrace(testTrace));
+        fixture = new CTFTraceReader(testTraceWrapper.getTrace());
     }
 
     /**
@@ -57,7 +70,7 @@ public class CTFTraceReaderTest {
      */
     @Test
     public void testOpen_existing() throws CTFException {
-        CTFTrace trace = CtfTestTraceUtils.getTrace(testTrace);
+        CTFTrace trace = testTraceWrapper.getTrace();
         try (CTFTraceReader result = new CTFTraceReader(trace);) {
             assertNotNull(result);
         }

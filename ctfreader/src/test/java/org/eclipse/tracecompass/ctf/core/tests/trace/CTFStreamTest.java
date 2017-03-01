@@ -22,14 +22,16 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceUtils;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInput;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
 import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -43,10 +45,20 @@ import org.junit.Test;
 public class CTFStreamTest {
 
     private static final CtfTestTrace testTrace = CtfTestTrace.KERNEL;
+    private static CtfTestTraceExtractor testTraceWrapper;
 
     private CTFStream fixture;
-
     private CTFStreamInput fInput;
+
+    @BeforeClass
+    public static void setupClass() {
+        testTraceWrapper = CtfTestTraceExtractor.extractTestTrace(testTrace);
+    }
+
+    @AfterClass
+    public static void teardownClass() {
+        testTraceWrapper.close();
+    }
 
     /**
      * Perform pre-test initialization.
@@ -55,17 +67,17 @@ public class CTFStreamTest {
      */
     @Before
     public void setUp() throws CTFException {
-        fixture = new CTFStream(CtfTestTraceUtils.getTrace(testTrace));
+        fixture = new CTFStream(testTraceWrapper.getTrace());
         fixture.setEventContext(new StructDeclaration(1L));
         fixture.setPacketContext(new StructDeclaration(1L));
         fixture.setEventHeader(new StructDeclaration(1L));
         fixture.setId(1L);
-        fInput = new CTFStreamInput(new CTFStream(CtfTestTraceUtils.getTrace(testTrace)), createFile());
+        fInput = new CTFStreamInput(new CTFStream(testTraceWrapper.getTrace()), createFile());
         fixture.addInput(fInput);
     }
 
     private static @NonNull File createFile() throws CTFException {
-        File path = new File(CtfTestTraceUtils.getTrace(testTrace).getPath());
+        File path = new File(testTraceWrapper.getTrace().getPath());
         final File[] listFiles = path.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
@@ -88,8 +100,7 @@ public class CTFStreamTest {
      */
     @Test
     public void testStream() throws CTFException {
-        CTFTrace trace = CtfTestTraceUtils.getTrace(testTrace);
-        CTFStream result = new CTFStream(trace);
+        CTFStream result = new CTFStream(testTraceWrapper.getTrace());
         assertNotNull(result);
     }
 
