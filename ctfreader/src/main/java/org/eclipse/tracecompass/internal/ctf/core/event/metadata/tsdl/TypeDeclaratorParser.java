@@ -21,8 +21,10 @@ import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
+import org.eclipse.tracecompass.ctf.core.event.types.ArrayDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
+import org.eclipse.tracecompass.ctf.core.event.types.SequenceDeclaration;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedCommonTreeParser;
@@ -30,8 +32,6 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.event.EventScopeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.stream.StreamScopeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.trace.TraceScopeParser;
-import org.eclipse.tracecompass.internal.ctf.core.event.types.ArrayDeclaration;
-import org.eclipse.tracecompass.internal.ctf.core.event.types.SequenceDeclaration;
 
 /**
  * A type declarator parser

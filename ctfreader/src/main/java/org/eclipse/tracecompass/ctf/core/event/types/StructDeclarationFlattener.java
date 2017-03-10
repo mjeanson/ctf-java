@@ -10,12 +10,9 @@
  *      Matthew Khouzam - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.tracecompass.internal.ctf.core.event.types;
+package org.eclipse.tracecompass.ctf.core.event.types;
 
 import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.ISimpleDatatypeDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 
 /**
  * A fixed size struct declaration is a declaration of a structure that has no
