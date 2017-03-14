@@ -11,8 +11,8 @@ package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl;
 import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * Type declaration String parser

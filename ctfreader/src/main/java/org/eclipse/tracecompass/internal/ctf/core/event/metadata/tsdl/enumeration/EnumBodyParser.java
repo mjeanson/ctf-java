@@ -13,9 +13,9 @@ import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * Body parser for an enumeration, this parses the list of elements in an enum

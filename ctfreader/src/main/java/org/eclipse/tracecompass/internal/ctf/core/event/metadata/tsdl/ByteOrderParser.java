@@ -16,10 +16,10 @@ import java.nio.ByteOrder;
 import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * By default, byte order of a basic type is the byte order described in the

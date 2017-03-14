@@ -15,10 +15,10 @@ import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.Tsd
 import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * Parse the encoding field. This can be "ascii", "utf8" or "none"

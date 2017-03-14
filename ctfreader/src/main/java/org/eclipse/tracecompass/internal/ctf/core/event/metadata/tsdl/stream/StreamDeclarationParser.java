@@ -19,6 +19,7 @@ import org.antlr.runtime.tree.Tree;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.CTFStrings;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IEventHeaderDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
@@ -27,7 +28,6 @@ import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedCommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.Messages;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypeSpecifierListParser;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
 

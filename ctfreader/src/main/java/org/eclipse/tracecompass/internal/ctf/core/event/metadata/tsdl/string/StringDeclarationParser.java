@@ -16,11 +16,11 @@ import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
 import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * Strings are an array of bytes of variable size and are terminated by a '\0'

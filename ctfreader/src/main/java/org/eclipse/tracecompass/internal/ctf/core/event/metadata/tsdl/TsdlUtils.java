@@ -13,8 +13,8 @@ import java.util.List;
 
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * TSDL utils, this class provides some simple verifications for a common tree.

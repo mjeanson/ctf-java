@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.tracecompass.ctf.core.event.CTFClock;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * Clock metadata allows to describe the clock topology of the system, as well

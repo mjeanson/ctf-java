@@ -11,6 +11,7 @@ package org.eclipse.tracecompass.internal.ctf.core.event.metadata;
 
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 
 /**
  * Common tree parser interface. Should only have one method

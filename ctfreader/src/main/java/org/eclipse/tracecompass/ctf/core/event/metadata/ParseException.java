@@ -10,7 +10,7 @@
  * Contributors: Simon Marchi - Initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.tracecompass.internal.ctf.core.event.metadata;
+package org.eclipse.tracecompass.ctf.core.event.metadata;
 
 
 /**

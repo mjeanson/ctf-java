@@ -12,9 +12,9 @@ package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl;
 import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryInteger;
 
 import org.antlr.runtime.tree.CommonTree;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 
 /**
  * Alignment parser, we define byte-packed types as aligned on the byte size,

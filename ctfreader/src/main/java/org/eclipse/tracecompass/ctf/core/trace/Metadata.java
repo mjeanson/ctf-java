@@ -40,12 +40,12 @@ import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.RewriteCardinalityException;
 import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.parser.CTFLexer;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.ctf.parser.CTFParser.parse_return;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.CtfAntlrException;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.IOStructGen;
-import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.internal.ctf.core.trace.Utils;
 
 /**
