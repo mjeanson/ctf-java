@@ -185,7 +185,10 @@ public final class BitBuffer {
      *             - If there are fewer than length bytes remaining in this
      *             buffer
      */
-    public void get(byte @NonNull [] dst) {
+    public void get(byte[] dst) {
+        if (dst == null) {
+            throw new IllegalArgumentException();
+        }
         fBuffer.position((int) (fPosition / BIT_CHAR));
         fBuffer.get(dst);
         fPosition += dst.length * BIT_CHAR;
