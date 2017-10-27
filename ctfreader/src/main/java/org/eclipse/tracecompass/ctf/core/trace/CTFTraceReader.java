@@ -16,13 +16,9 @@ package org.eclipse.tracecompass.ctf.core.trace;
 import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
@@ -456,6 +452,20 @@ public class CTFTraceReader implements AutoCloseable {
      */
     public final boolean hasMoreEvents() {
         return fPrio.size() > 0;
+    }
+
+    /**
+     * Get the packet descriptors of the current packet of each stream.
+     * Note this is only valid for the current position, and can change
+     * as soon as the reader is seeked elsewhere.
+     *
+     * @return The current packet descriptors
+     */
+    public Iterable<ICTFPacketDescriptor> getCurrentPacketDescriptors() {
+        return fStreamInputReaders.stream().filter(Objects::nonNull)
+                .map(CTFStreamInputReader::getCurrentPacketReader).filter(Objects::nonNull)
+                .map(IPacketReader::getCurrentPacket).filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     /**
