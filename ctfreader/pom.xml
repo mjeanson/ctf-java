@@ -16,7 +16,7 @@
   <parent>
     <groupId>org.eclipse.tracecompass</groupId>
     <artifactId>ctfreader-parent</artifactId>
-    <version>0.1.4-SNAPSHOT</version>
+    <version>0.1.5-SNAPSHOT</version>
   </parent>
 
   <artifactId>ctfreader</artifactId>
