@@ -11,16 +11,7 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
-
-import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
+import com.google.common.collect.Iterables;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
@@ -30,13 +21,18 @@ import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.ctf.core.trace.Metadata;
-import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.lttng.scope.ttt.ctf.CtfTestTrace;
 
-import com.google.common.collect.Iterables;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import static org.junit.Assert.*;
 
 /**
  * The class <code>MetadataTest</code> contains tests for the class

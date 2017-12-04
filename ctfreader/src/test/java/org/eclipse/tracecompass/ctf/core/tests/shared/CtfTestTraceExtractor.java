@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
-import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
+import org.lttng.scope.ttt.ctf.CtfTestTrace;
 
 /**
  * Wrapper around {@link CtfTestTrace} that will extract the resources to a

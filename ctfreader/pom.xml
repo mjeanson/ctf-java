@@ -40,8 +40,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.eclipse.tracecompass.testtraces</groupId>
-      <artifactId>tracecompass-test-traces-ctf</artifactId>
+      <groupId>org.lttng.scope</groupId>
+      <artifactId>ttt-ctf</artifactId>
     </dependency>
 
     <dependency>

@@ -13,17 +13,7 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.io.File;
-import java.nio.ByteOrder;
-import java.util.UUID;
-
+import com.google.common.collect.ImmutableMap;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.CTFClock;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
@@ -33,13 +23,17 @@ import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
-import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.lttng.scope.ttt.ctf.CtfTestTrace;
 
-import com.google.common.collect.ImmutableMap;
+import java.io.File;
+import java.nio.ByteOrder;
+import java.util.UUID;
+
+import static org.junit.Assert.*;
 
 /**
  * The class <code>CTFTraceTest</code> contains tests for the class

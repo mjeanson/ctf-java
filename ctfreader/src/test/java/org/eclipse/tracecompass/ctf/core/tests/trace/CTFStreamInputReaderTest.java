@@ -11,36 +11,26 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
+import org.eclipse.tracecompass.ctf.core.trace.*;
+import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
+import org.eclipse.tracecompass.internal.ctf.core.event.EventDefinition;
+import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.lttng.scope.ttt.ctf.CtfTestTrace;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
-import org.eclipse.tracecompass.ctf.core.event.types.ICompositeDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
-import org.eclipse.tracecompass.ctf.core.trace.CTFResponse;
-import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInput;
-import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInputReader;
-import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
-import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
-import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
-import org.eclipse.tracecompass.internal.ctf.core.event.EventDefinition;
-import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
-import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>StreamInputReaderTest</code> contains tests for the class

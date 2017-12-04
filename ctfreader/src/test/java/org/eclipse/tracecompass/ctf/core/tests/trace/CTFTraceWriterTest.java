@@ -12,11 +12,20 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
-import static java.util.Objects.requireNonNull;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
+import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
+import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
+import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
+import org.eclipse.tracecompass.ctf.core.trace.CTFTraceWriter;
+import org.eclipse.tracecompass.internal.ctf.core.trace.Utils;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+import org.lttng.scope.ttt.ctf.CtfTestTrace;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,20 +34,8 @@ import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
-import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
-import org.eclipse.tracecompass.ctf.core.trace.CTFTraceReader;
-import org.eclipse.tracecompass.ctf.core.trace.CTFTraceWriter;
-import org.eclipse.tracecompass.internal.ctf.core.trace.Utils;
-import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import static java.util.Objects.requireNonNull;
+import static org.junit.Assert.*;
 
 /**
  * CTFTraceWriter test cases

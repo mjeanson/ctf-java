@@ -27,11 +27,11 @@ import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInput;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
-import org.eclipse.tracecompass.testtraces.ctf.CtfTestTrace;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.lttng.scope.ttt.ctf.CtfTestTrace;
 
 /**
  * The class <code>StreamInputTest</code> contains tests for the class
