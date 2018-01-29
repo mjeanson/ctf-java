@@ -12,7 +12,7 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A fixed size struct declaration is a declaration of a structure that has no
@@ -36,7 +36,7 @@ public final class StructDeclarationFlattener {
      * @return The flattened struct. Or if it couldn't be flattened, the 'sd'
      *         struct itself
      */
-    public static @NonNull StructDeclaration tryFlattenStruct(@NonNull StructDeclaration sd) {
+    public static @NotNull StructDeclaration tryFlattenStruct(@NotNull StructDeclaration sd) {
         if (canBeFlattened(sd)) {
             return newFlattenedStruct(sd);
         }
@@ -50,7 +50,7 @@ public final class StructDeclarationFlattener {
      *            the struct
      * @return if the struct is of fixed size
      */
-    private static boolean canBeFlattened(@NonNull StructDeclaration sd) {
+    private static boolean canBeFlattened(@NotNull StructDeclaration sd) {
         for (String field : sd.getFieldsList()) {
             IDeclaration dec = sd.getField(field);
             if (!isFixedSize(dec)) {
@@ -74,7 +74,7 @@ public final class StructDeclarationFlattener {
         return false;
     }
 
-    private static @NonNull StructDeclaration newFlattenedStruct(@NonNull StructDeclaration sd) {
+    private static @NotNull StructDeclaration newFlattenedStruct(@NotNull StructDeclaration sd) {
         StructDeclaration flatStruct = new StructDeclaration(sd.getAlignment());
         for (String name : sd.getFieldsList()) {
             depthFirstAdd(name, flatStruct, sd.getField(name));
@@ -82,7 +82,7 @@ public final class StructDeclarationFlattener {
         return flatStruct;
     }
 
-    private static void depthFirstAdd(@NonNull String path, StructDeclaration flatStruct, IDeclaration dec) {
+    private static void depthFirstAdd(@NotNull String path, StructDeclaration flatStruct, IDeclaration dec) {
         if (dec instanceof ISimpleDatatypeDeclaration) {
             flatStruct.addField(path, dec);
         } else if (dec instanceof ArrayDeclaration) {

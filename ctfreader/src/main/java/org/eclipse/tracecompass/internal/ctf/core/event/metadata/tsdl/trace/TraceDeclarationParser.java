@@ -9,26 +9,11 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.trace;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
-
-import java.nio.ByteOrder;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.UUID;
-import java.util.logging.Logger;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
-import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
 import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration.Pair;
-import org.eclipse.tracecompass.ctf.core.event.types.FloatDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.VariantDeclaration;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedCommonTreeParser;
@@ -36,6 +21,15 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.Messages;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.ByteOrderParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypeSpecifierListParser;
+
+import java.nio.ByteOrder;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.UUID;
+import java.util.logging.Logger;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
 
 /**
  *
@@ -79,7 +73,6 @@ public final class TraceDeclarationParser extends AbstractScopedCommonTreeParser
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
 
         private final DeclarationScope fCurrentScope;

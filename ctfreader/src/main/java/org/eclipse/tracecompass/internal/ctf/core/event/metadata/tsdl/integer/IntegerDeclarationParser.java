@@ -9,17 +9,7 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.integer;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
-
-import java.nio.ByteOrder;
-import java.util.List;
-import java.util.logging.Logger;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
@@ -32,6 +22,13 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.AlignmentP
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.ByteOrderParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.SizeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.string.EncodingParser;
+import org.jetbrains.annotations.NotNull;
+
+import java.nio.ByteOrder;
+import java.util.List;
+import java.util.logging.Logger;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.*;
 
 /**
  * Signed integers are represented in two-complement. Integer alignment, size,
@@ -75,7 +72,6 @@ public final class IntegerDeclarationParser implements ICommonTreeParser {
      *
      * @author Matthew Khouzam
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final CTFTrace fTrace;
 
@@ -95,13 +91,13 @@ public final class IntegerDeclarationParser implements ICommonTreeParser {
      */
     public static final IntegerDeclarationParser INSTANCE = new IntegerDeclarationParser();
 
-    private static final @NonNull String ENCODING = "encoding"; //$NON-NLS-1$
-    private static final @NonNull String EMPTY_STRING = ""; //$NON-NLS-1$
+    private static final @NotNull String ENCODING = "encoding"; //$NON-NLS-1$
+    private static final @NotNull String EMPTY_STRING = ""; //$NON-NLS-1$
     private static final int DEFAULT_INT_BASE = 10;
-    private static final @NonNull String MAP = "map"; //$NON-NLS-1$
-    private static final @NonNull String BASE = "base"; //$NON-NLS-1$
-    private static final @NonNull String SIZE = "size"; //$NON-NLS-1$
-    private static final @NonNull String SIGNED = "signed"; //$NON-NLS-1$
+    private static final @NotNull String MAP = "map"; //$NON-NLS-1$
+    private static final @NotNull String BASE = "base"; //$NON-NLS-1$
+    private static final @NotNull String SIZE = "size"; //$NON-NLS-1$
+    private static final @NotNull String SIGNED = "signed"; //$NON-NLS-1$
 
     private IntegerDeclarationParser() {
     }
@@ -138,8 +134,7 @@ public final class IntegerDeclarationParser implements ICommonTreeParser {
         long size = 0;
         long alignment = 0;
         int base = DEFAULT_INT_BASE;
-        @NonNull
-        String clock = EMPTY_STRING;
+        @NotNull String clock = EMPTY_STRING;
 
         Encoding encoding = Encoding.NONE;
 

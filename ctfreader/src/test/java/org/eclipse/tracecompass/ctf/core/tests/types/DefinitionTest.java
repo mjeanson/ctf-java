@@ -11,16 +11,12 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.types;
 
-import static org.junit.Assert.assertNotNull;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
-import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>DefinitionTest</code> contains tests for the class
@@ -37,16 +33,14 @@ public class DefinitionTest {
      */
     static class DefTest extends Definition {
 
-        @NonNull
-        private static final StringDeclaration STRINGDEC = StringDeclaration.getStringDeclaration(Encoding.UTF8);
+        private static final @NotNull StringDeclaration STRINGDEC = StringDeclaration.getStringDeclaration(Encoding.UTF8);
 
-        public DefTest(IDefinitionScope definitionScope, @NonNull String fieldName) {
+        public DefTest(IDefinitionScope definitionScope, @NotNull String fieldName) {
             super(DefTest.STRINGDEC, definitionScope, fieldName);
         }
 
         @Override
-        @NonNull
-        public IDeclaration getDeclaration() {
+        public @NotNull IDeclaration getDeclaration() {
             return DefTest.STRINGDEC;
         }
 

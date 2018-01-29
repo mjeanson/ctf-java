@@ -12,11 +12,11 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A CTF string declaration.
@@ -29,7 +29,6 @@ import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
  * @author Matthew Khouzam
  * @author Simon Marchi
  */
-@NonNullByDefault
 public class StringDeclaration extends Declaration {
 
     private static final StringDeclaration STRING_DEC_UTF8 = new StringDeclaration(Encoding.UTF8);
@@ -120,9 +119,10 @@ public class StringDeclaration extends Declaration {
     // Operations
     // ------------------------------------------------------------------------
 
+
     @Override
-    public StringDefinition createDefinition(@Nullable IDefinitionScope definitionScope,
-            String fieldName, BitBuffer input) throws CTFException {
+    public @NotNull StringDefinition createDefinition(@Nullable IDefinitionScope definitionScope,
+                                                      @NotNull String fieldName, @NotNull BitBuffer input) throws CTFException {
         String value = read(input);
         return new StringDefinition(this, definitionScope, fieldName, value);
     }

@@ -12,14 +12,12 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
+import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * A CTF array definition
@@ -31,7 +29,6 @@ import com.google.common.collect.ImmutableList;
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public final class ArrayDefinition extends AbstractArrayDefinition {
 
     // ------------------------------------------------------------------------

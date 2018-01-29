@@ -8,15 +8,14 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl;
 
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedCommonTreeParser;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * Basic parser for all abstract data types
@@ -32,7 +31,6 @@ public final class TypeDeclarationParser extends AbstractScopedCommonTreeParser 
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final DeclarationScope fDeclarationScope;
         private final @Nullable List<CommonTree> fPointerList;

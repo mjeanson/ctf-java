@@ -12,17 +12,15 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableList;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
+import java.util.List;
 
 /**
  * A CTF array declaration
@@ -96,7 +94,7 @@ public final class ArrayDeclaration extends CompoundDeclaration {
 
     @Override
     public AbstractArrayDefinition createDefinition(@Nullable IDefinitionScope definitionScope,
-            @NonNull String fieldName, BitBuffer input) throws CTFException {
+                                                    @NotNull String fieldName, BitBuffer input) throws CTFException {
         alignRead(input);
         if (isAlignedBytes()) {
             byte[] data = new byte[fLength];
@@ -107,7 +105,7 @@ public final class ArrayDeclaration extends CompoundDeclaration {
 
             return new ByteArrayDefinition(this, definitionScope, fieldName, data);
         }
-        @NonNull List<@NonNull Definition> definitions = read(input, definitionScope, fieldName);
+        @NotNull List<Definition> definitions = read(input, definitionScope, fieldName);
         return new ArrayDefinition(this, definitionScope, fieldName, definitions);
     }
 
@@ -117,8 +115,8 @@ public final class ArrayDeclaration extends CompoundDeclaration {
         return "[declaration] array[" + Integer.toHexString(hashCode()) + ']'; //$NON-NLS-1$
     }
 
-    private @NonNull List<@NonNull Definition> read(@NonNull BitBuffer input, @Nullable IDefinitionScope definitionScope, String fieldName) throws CTFException {
-        Builder<@NonNull Definition> definitions = new ImmutableList.Builder<>();
+    private @NotNull List<Definition> read(@NotNull BitBuffer input, @Nullable IDefinitionScope definitionScope, String fieldName) throws CTFException {
+        ImmutableList.Builder<Definition> definitions = new ImmutableList.Builder<>();
         if (!fChildrenNames.containsKey(fieldName)) {
             for (int i = 0; i < fLength; i++) {
                 fChildrenNames.put(fieldName, fieldName + '[' + i + ']');

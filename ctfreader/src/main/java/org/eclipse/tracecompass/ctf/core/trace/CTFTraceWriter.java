@@ -12,15 +12,15 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
-import static java.util.Objects.requireNonNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.tracecompass.ctf.core.CTFException;
+import static java.util.Objects.requireNonNull;
 
 /**
  * A CTF trace reader. Reads the events of a trace.
@@ -37,7 +37,7 @@ public class CTFTraceWriter {
     /**
      * The trace to read from.
      */
-    @Nullable private final CTFTrace fInTrace;
+    private final @Nullable CTFTrace fInTrace;
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -51,7 +51,7 @@ public class CTFTraceWriter {
      * @throws CTFException
      *             if an error occurs
      */
-    public CTFTraceWriter(@NonNull CTFTrace trace) throws CTFException {
+    public CTFTraceWriter(@NotNull CTFTrace trace) throws CTFException {
         fInTrace = trace;
         try (CTFTraceReader fTraceReader = new CTFTraceReader(fInTrace)) {
             fTraceReader.populateIndex();

@@ -12,7 +12,13 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.trace;
 
-import static java.util.Objects.requireNonNull;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
+import org.eclipse.tracecompass.ctf.core.CTFStrings;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.eclipse.tracecompass.ctf.core.trace.ICTFPacketDescriptor;
+import org.eclipse.tracecompass.ctf.core.trace.IPacketReader;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.AbstractMap;
 import java.util.Collections;
@@ -20,20 +26,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.CTFStrings;
-import org.eclipse.tracecompass.ctf.core.event.types.EnumDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.FloatDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.SimpleDatatypeDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
-import org.eclipse.tracecompass.ctf.core.trace.ICTFPacketDescriptor;
-import org.eclipse.tracecompass.ctf.core.trace.IPacketReader;
-
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMap.Builder;
+import static java.util.Objects.requireNonNull;
 
 /**
  * <b><u>StreamInputPacketIndexEntry</u></b>
@@ -92,7 +85,7 @@ public class StreamInputPacketIndexEntry implements ICTFPacketDescriptor {
     /**
      * Attributes of this index entry
      */
-    private final @NonNull Map<String, Object> fAttributes;
+    private final @NotNull Map<String, Object> fAttributes;
 
     private final long fEndPacketHeaderBits;
 
@@ -201,7 +194,7 @@ public class StreamInputPacketIndexEntry implements ICTFPacketDescriptor {
         fLostEvents = entryToAdd.getLostEvents();
     }
 
-    private static @NonNull Map<String, Object> computeAttributeMap(StructDefinition streamPacketContextDef) {
+    private static @NotNull Map<String, Object> computeAttributeMap(StructDefinition streamPacketContextDef) {
         Builder<String, Object> attributeBuilder = ImmutableMap.<String, Object> builder();
         for (String field : streamPacketContextDef.getDeclaration().getFieldsList()) {
             IDefinition id = streamPacketContextDef.lookupDefinition(field);

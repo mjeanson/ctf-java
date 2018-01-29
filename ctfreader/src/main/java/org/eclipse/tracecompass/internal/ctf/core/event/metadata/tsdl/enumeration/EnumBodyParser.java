@@ -9,13 +9,12 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.enumeration;
 
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
+
+import java.util.List;
 
 /**
  * Body parser for an enumeration, this parses the list of elements in an enum
@@ -31,7 +30,6 @@ public final class EnumBodyParser implements ICommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
 
         private final EnumDeclaration fEnumDeclaration;

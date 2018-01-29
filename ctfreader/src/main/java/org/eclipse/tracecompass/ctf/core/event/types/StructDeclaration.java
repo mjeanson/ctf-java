@@ -12,17 +12,17 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.regex.Pattern;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  * A CTF structure declaration.
@@ -51,9 +51,9 @@ public class StructDeclaration extends Declaration {
     // ------------------------------------------------------------------------
 
     /** Field names */
-    private @NonNull String[] fFieldNames;
+    private @NotNull String[] fFieldNames;
     /** Field declarations */
-    private @NonNull IDeclaration[] fFields;
+    private @NotNull IDeclaration[] fFields;
 
     /** maximum bit alignment */
     private long fMaxAlign;
@@ -72,8 +72,8 @@ public class StructDeclaration extends Declaration {
      */
     public StructDeclaration(long align) {
         fMaxAlign = Math.max(align, 1);
-        fFieldNames = new @NonNull String[0];
-        fFields = new @NonNull IDeclaration[0];
+        fFieldNames = new String[0];
+        fFields = new IDeclaration[0];
     }
 
     // ------------------------------------------------------------------------
@@ -107,8 +107,7 @@ public class StructDeclaration extends Declaration {
      *            The field name
      * @return The declaration of the field, or null if there is no such field.
      */
-    @Nullable
-    public IDeclaration getField(String fieldName) {
+    public @Nullable IDeclaration getField(String fieldName) {
         final int indexOf = Arrays.asList(fFieldNames).indexOf(fieldName);
         if (indexOf == -1) {
             return null;
@@ -121,7 +120,7 @@ public class StructDeclaration extends Declaration {
      *
      * @return the field list.
      */
-    public @NonNull Iterable<@NonNull String> getFieldsList() {
+    public @NotNull Iterable<String> getFieldsList() {
         return Arrays.asList(fFieldNames);
     }
 
@@ -177,7 +176,7 @@ public class StructDeclaration extends Declaration {
      * @since 1.0
      */
     public StructDefinition createDefinition(IDefinitionScope definitionScope,
-            ILexicalScope fieldScope, @NonNull BitBuffer input) throws CTFException {
+            ILexicalScope fieldScope, @NotNull BitBuffer input) throws CTFException {
         alignRead(input);
         final Definition[] myFields = new Definition[fFields.length];
 
@@ -195,15 +194,15 @@ public class StructDeclaration extends Declaration {
      * @param declaration
      *            the declaration of the field
      */
-    public void addField(@NonNull String name, @NonNull IDeclaration declaration) {
+    public void addField(@NotNull String name, @NotNull IDeclaration declaration) {
         if (hasField(name)) {
             LOGGER.warning(() -> "Struct already contains a field named " + name); //$NON-NLS-1$
             return;
         }
         /* extend by one */
         final int length = fFieldNames.length;
-        @NonNull String[] names = Arrays.copyOf(fFieldNames, length + 1);
-        @NonNull IDeclaration[] fields = Arrays.copyOf(fFields, length + 1);
+        @NotNull String[] names = Arrays.copyOf(fFieldNames, length + 1);
+        @NotNull IDeclaration[] fields = Arrays.copyOf(fFields, length + 1);
         /* set the value */
         names[length] = name;
         fields[length] = declaration;
@@ -212,9 +211,9 @@ public class StructDeclaration extends Declaration {
         fMaxAlign = Math.max(fMaxAlign, declaration.getAlignment());
     }
 
-    private void fillStruct(@NonNull BitBuffer input, final IDefinition[] myFields, StructDefinition structDefinition) throws CTFException {
-        final @NonNull String[] fieldNames = fFieldNames;
-        final @NonNull IDeclaration[] fields = fFields;
+    private void fillStruct(@NotNull BitBuffer input, final IDefinition[] myFields, StructDefinition structDefinition) throws CTFException {
+        final @NotNull String[] fieldNames = fFieldNames;
+        final @NotNull IDeclaration[] fields = fFields;
         for (int i = 0; i < fields.length; i++) {
             /* We should not have inserted null keys... */
             myFields[i] = fields[i].createDefinition(structDefinition, fieldNames[i], input);
@@ -237,7 +236,7 @@ public class StructDeclaration extends Declaration {
      *             something went wrong
      * @since 1.1
      */
-    public StructDefinition createFieldDefinition(ICompositeDefinition eventHeaderDef, IDefinitionScope definitionScope, ILexicalScope fields, @NonNull BitBuffer input) throws CTFException {
+    public StructDefinition createFieldDefinition(ICompositeDefinition eventHeaderDef, IDefinitionScope definitionScope, ILexicalScope fields, @NotNull BitBuffer input) throws CTFException {
         alignRead(input);
         final Definition[] myFields = new Definition[fFields.length];
         IDefinitionScope merged = definitionScope;

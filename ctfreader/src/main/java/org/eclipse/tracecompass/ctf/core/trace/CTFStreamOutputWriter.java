@@ -12,7 +12,11 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
-import static java.util.Objects.requireNonNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.internal.ctf.core.SafeMappedByteBuffer;
+import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputPacketIndex;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,11 +28,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.internal.ctf.core.SafeMappedByteBuffer;
-import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputPacketIndex;
+import static java.util.Objects.requireNonNull;
 
 /**
  * A CTF Stream output writer. Reads the packets of a given CTFStreamInput and
@@ -45,12 +45,9 @@ public class CTFStreamOutputWriter {
     // Stream input when copying stream from an input
     // It is @Nullable for future implementations that doesn't use an input
     // stream
-    @Nullable
-    private final CTFStreamInput fStreamInput;
-    @NonNull
-    private final CTFStreamPacketOutputWriter fStreamPacketOutputWriter;
-    @NonNull
-    private final File fOutFile;
+    private final @Nullable CTFStreamInput fStreamInput;
+    private final @NotNull CTFStreamPacketOutputWriter fStreamPacketOutputWriter;
+    private final @NotNull File fOutFile;
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -66,7 +63,7 @@ public class CTFStreamOutputWriter {
      * @throws CTFException
      *             If a reading or writing error occurs
      */
-    public CTFStreamOutputWriter(@NonNull CTFStreamInput streamInput, @NonNull File file) throws CTFException {
+    public CTFStreamOutputWriter(@NotNull CTFStreamInput streamInput, @NotNull File file) throws CTFException {
         fStreamInput = streamInput;
         String inFileName = streamInput.getFile().getName();
         Path outFilePath = FileSystems.getDefault().getPath(file.getAbsolutePath(), inFileName);

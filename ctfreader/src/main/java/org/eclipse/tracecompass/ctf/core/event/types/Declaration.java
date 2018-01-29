@@ -11,12 +11,12 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.LexicalScope;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Declaration base, it helps for basic functionality that is often called, so
@@ -30,7 +30,7 @@ public abstract class Declaration implements IDeclaration {
      * @since 1.0
      */
     @Override
-    public ILexicalScope getPath(IDefinitionScope definitionScope, @NonNull String fieldName) {
+    public ILexicalScope getPath(IDefinitionScope definitionScope, @NotNull String fieldName) {
         if (definitionScope != null) {
             final ILexicalScope parentPath = definitionScope.getScopePath();
             if (parentPath != null) {

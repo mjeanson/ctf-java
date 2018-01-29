@@ -12,8 +12,7 @@
 
 package org.eclipse.tracecompass.ctf.core.event.scope;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A lttng specific speedup node (the packet header with ID and V) of a lexical
@@ -21,7 +20,6 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public final class EventHeaderScope extends LexicalScope {
 
 
@@ -38,8 +36,7 @@ public final class EventHeaderScope extends LexicalScope {
     }
 
     @Override
-    @Nullable
-    public ILexicalScope getChild(String name) {
+    public @Nullable ILexicalScope getChild(String name) {
         if (name.equals(EVENT_HEADER_ID.getName())) {
             return EVENT_HEADER_ID;
         }

@@ -12,24 +12,20 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.LexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.ICompositeDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFPacketDescriptor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Representation of a particular instance of an event.
@@ -67,11 +63,11 @@ public final class EventDefinition implements IDefinitionScope, IEventDefinition
     private final ICompositeDefinition fFields;
 
     /**
-     * The current cpu, could be @link {@link IPacketHeader#UNKNOWN_CPU}
+     * The current cpu, could be IPacketHeader#UNKNOWN_CPU
      */
     private final int fCpu;
 
-    private final @NonNull Map<String, Object> fPacketAttributes;
+    private final @NotNull Map<String, Object> fPacketAttributes;
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -181,7 +177,7 @@ public final class EventDefinition implements IDefinitionScope, IEventDefinition
         List<Definition> fieldValues = new ArrayList<>();
 
         /* Add fields from the stream */
-        List<@NonNull String> fieldNames = fStreamContext.getFieldNames();
+        List<String> fieldNames = fStreamContext.getFieldNames();
         for (String fieldName : fieldNames) {
             Definition definition = fStreamContext.getDefinition(fieldName);
             mergedDeclaration.addField(fieldName, definition.getDeclaration());

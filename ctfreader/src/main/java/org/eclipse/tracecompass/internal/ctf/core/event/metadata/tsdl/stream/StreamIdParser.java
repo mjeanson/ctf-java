@@ -8,12 +8,12 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.stream;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryInteger;
-
 import org.antlr.runtime.tree.CommonTree;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.UnaryIntegerParser;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryInteger;
 
 /**
  * <strong>Stream ID</strong>, used as reference to stream description in

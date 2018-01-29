@@ -9,15 +9,7 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.floatingpoint;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
-
-import java.nio.ByteOrder;
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.FloatDeclaration;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
@@ -27,6 +19,11 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.AlignmentParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.ByteOrderParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.UnaryIntegerParser;
+
+import java.nio.ByteOrder;
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.*;
 
 /**
  *
@@ -68,7 +65,6 @@ public final class FloatDeclarationParser implements ICommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final CTFTrace fTrace;
 

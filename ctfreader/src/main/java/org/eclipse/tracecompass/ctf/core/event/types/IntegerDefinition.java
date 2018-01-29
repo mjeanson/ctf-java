@@ -12,10 +12,10 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.math.BigInteger;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
+
+import java.math.BigInteger;
 
 /**
  * A CTF integer definition.
@@ -55,8 +55,8 @@ public final class IntegerDefinition extends SimpleDatatypeDefinition {
      * @param value
      *            integer value
      */
-    public IntegerDefinition(@NonNull IntegerDeclaration declaration,
-            IDefinitionScope definitionScope, @NonNull String fieldName, long value) {
+    public IntegerDefinition(@NotNull IntegerDeclaration declaration,
+                             IDefinitionScope definitionScope, @NotNull String fieldName, long value) {
         super(declaration, definitionScope, fieldName);
         fValue = value;
     }

@@ -12,8 +12,8 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A CTF enum definition.
@@ -51,8 +51,8 @@ public final class EnumDefinition extends SimpleDatatypeDefinition {
      * @param intValue
      *            the value of the enum
      */
-    public EnumDefinition(@NonNull EnumDeclaration declaration,
-            IDefinitionScope definitionScope, @NonNull String fieldName, IntegerDefinition intValue) {
+    public EnumDefinition(@NotNull EnumDeclaration declaration,
+            IDefinitionScope definitionScope, @NotNull String fieldName, IntegerDefinition intValue) {
         super(declaration, definitionScope, fieldName);
 
         fIntegerValue = intValue.getValue();

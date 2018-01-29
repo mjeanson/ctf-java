@@ -11,17 +11,6 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.nio.ByteBuffer;
-import java.util.Collections;
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.CTFStrings;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
@@ -36,7 +25,14 @@ import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDefinition;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFPacketReader;
 import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputPacketIndexEntry;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
+import java.util.Collections;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * Unit tests for ctf packet reader: this tests creation and reading.
@@ -48,7 +44,7 @@ public class CTFPacketReaderTest {
 
     private static final StructDeclaration EMPTY_STRUCT = new StructDeclaration(8);
 
-    private static @NonNull BitBuffer createBitBuffer(byte[] bytes) {
+    private static @NotNull BitBuffer createBitBuffer(byte[] bytes) {
         return new BitBuffer(ByteBuffer.wrap(bytes));
     }
 
@@ -76,7 +72,7 @@ public class CTFPacketReaderTest {
         fields.addField("field2", IntegerDeclaration.UINT_8_DECL);
         eventDec.setFields(fields);
         eventDec.setLogLevel(4);
-        List<@Nullable IEventDeclaration> declarations = Collections.singletonList(eventDec);
+        List<IEventDeclaration> declarations = Collections.singletonList(eventDec);
         // step 5: give this event a context
         CTFTrace trace = new CTFTrace();
         CTFPacketReader cpr = new CTFPacketReader(input, packetContext, declarations, eventHeaderDeclaration, null, null, trace);
@@ -122,7 +118,7 @@ public class CTFPacketReaderTest {
         eventDec.setContext(context);
         eventDec.setFields(fields);
         eventDec.setLogLevel(5);// I guess?
-        List<@Nullable IEventDeclaration> declarations = Collections.singletonList(eventDec);
+        List<IEventDeclaration> declarations = Collections.singletonList(eventDec);
         // step 5: give this event a context
         CTFTrace trace = new CTFTrace();
         CTFPacketReader cpr = new CTFPacketReader(input, packetContext, declarations, eventHeaderDeclaration, null, null, trace);
@@ -163,7 +159,7 @@ public class CTFPacketReaderTest {
         fields.addField("field1", IntegerDeclaration.UINT_16L_DECL);
         fields.addField("field2", IntegerDeclaration.UINT_8_DECL);
         eventDec.setFields(fields);
-        List<@Nullable IEventDeclaration> declarations = Collections.singletonList(eventDec);
+        List<IEventDeclaration> declarations = Collections.singletonList(eventDec);
         // step 5: give this event a context
         CTFTrace trace = new CTFTrace();
         CTFPacketReader cpr = new CTFPacketReader(input, packetContext, declarations, null, null, null, trace);
@@ -204,7 +200,7 @@ public class CTFPacketReaderTest {
         fields.addField("timestamp", IntegerDeclaration.UINT_16L_DECL);
         fields.addField("field", IntegerDeclaration.UINT_8_DECL);
         eventDec.setFields(fields);
-        List<@Nullable IEventDeclaration> declarations = Collections.singletonList(eventDec);
+        List<IEventDeclaration> declarations = Collections.singletonList(eventDec);
         // step 5: give this event a context
         CTFTrace trace = new CTFTrace();
         CTFPacketReader cpr = new CTFPacketReader(input, packetContext, declarations, null, null, null, trace);

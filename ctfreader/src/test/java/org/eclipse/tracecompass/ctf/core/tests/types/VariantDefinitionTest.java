@@ -11,37 +11,19 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.types;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
+import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.eclipse.tracecompass.ctf.core.tests.io.Util;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
-import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-import org.eclipse.tracecompass.ctf.core.event.types.AbstractArrayDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.ArrayDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.CompoundDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
-import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.EnumDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.FloatDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.VariantDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.VariantDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.io.Util;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  * The class <code>VariantDefinitionTest</code> contains tests for the class
@@ -55,18 +37,18 @@ public class VariantDefinitionTest {
     private VariantDefinition fixture;
 
     StructDefinition fStructDefinition;
-    private static final @NonNull String TEST_STRUCT_ID = "testStruct";
-    private static final @NonNull String ENUM_7 = "g";
-    private static final @NonNull String ENUM_6 = "f";
-    private static final @NonNull String ENUM_5 = "e";
-    private static final @NonNull String ENUM_4 = "d";
-    private static final @NonNull String ENUM_3 = "c";
-    private static final @NonNull String ENUM_2 = "b";
-    private static final @NonNull String ENUM_1 = "a";
-    private static final @NonNull String TAG_ID = "a";
-    private static final @NonNull String LENGTH_SEQ = "_len";
-    private static final @NonNull String VAR_FIELD_NAME = "var";
-    private static final @NonNull String ENUM_8 = "bbq ribs";
+    private static final @NotNull String TEST_STRUCT_ID = "testStruct";
+    private static final @NotNull String ENUM_7 = "g";
+    private static final @NotNull String ENUM_6 = "f";
+    private static final @NotNull String ENUM_5 = "e";
+    private static final @NotNull String ENUM_4 = "d";
+    private static final @NotNull String ENUM_3 = "c";
+    private static final @NotNull String ENUM_2 = "b";
+    private static final @NotNull String ENUM_1 = "a";
+    private static final @NotNull String TAG_ID = "a";
+    private static final @NotNull String LENGTH_SEQ = "_len";
+    private static final @NotNull String VAR_FIELD_NAME = "var";
+    private static final @NotNull String ENUM_8 = "bbq ribs";
 
     /**
      * Perform pre-test initialization.

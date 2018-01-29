@@ -11,7 +11,16 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.types;
 
-import static org.junit.Assert.assertNotNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
+import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.eclipse.tracecompass.ctf.core.event.scope.LexicalScope;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.eclipse.tracecompass.ctf.core.tests.io.Util;
+import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -19,26 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
-import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-import org.eclipse.tracecompass.ctf.core.event.scope.LexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.ArrayDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.ArrayDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.CompoundDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
-import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDefinition;
-import org.eclipse.tracecompass.ctf.core.tests.io.Util;
-import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>ArrayDefinition2Test</code> contains tests for the class
@@ -47,7 +37,7 @@ import org.junit.Test;
  */
 public class ArrayDefinition2Test {
 
-    private @NonNull CTFTrace trace = new CTFTrace();
+    private @NotNull CTFTrace trace = new CTFTrace();
     private ArrayDefinition charArrayFixture;
     private ArrayDefinition stringArrayFixture;
     private ArrayDefinition longArrayFixture;
@@ -67,34 +57,34 @@ public class ArrayDefinition2Test {
 
     private ArrayDefinition createLongArray() {
         IntegerDeclaration decl = IntegerDeclaration.createDeclaration(32, false, 10, ByteOrder.BIG_ENDIAN, Encoding.NONE, "none", 8);
-        List<@NonNull Definition> defs = createIntDefs(10, 32);
+        List<Definition> defs = createIntDefs(10, 32);
         ArrayDefinition temp = setUpDeclaration(decl, defs);
         return temp;
     }
 
     private ArrayDefinition createCharArray() {
         IntegerDeclaration decl = IntegerDeclaration.createDeclaration(8, false, 10, ByteOrder.BIG_ENDIAN, Encoding.UTF8, "none", 8);
-        List<@NonNull Definition> defs = createIntDefs(4, 8);
+        List<Definition> defs = createIntDefs(4, 8);
         ArrayDefinition temp = setUpDeclaration(decl, defs);
         return temp;
     }
 
     private ArrayDefinition createStringArray() {
         StringDeclaration strDecl = StringDeclaration.getStringDeclaration(Encoding.UTF8);
-        List<@NonNull Definition> defs = createDefs();
+        List<Definition> defs = createDefs();
         ArrayDefinition temp = setUpDeclaration(strDecl, defs);
         return temp;
     }
 
-    private ArrayDefinition setUpDeclaration(@NonNull IDeclaration decl,
-            @NonNull List<@NonNull Definition> defs) {
+    private ArrayDefinition setUpDeclaration(@NotNull IDeclaration decl,
+            @NotNull List<Definition> defs) {
         CompoundDeclaration ad = new ArrayDeclaration(0, decl);
         ArrayDefinition temp = new ArrayDefinition(ad, this.trace, "Testx", defs);
         return temp;
     }
 
-    private static @NonNull List<@NonNull Definition> createIntDefs(int size, int bits) {
-        List<@NonNull Definition> defs = new ArrayList<>(size);
+    private static @NotNull List<Definition> createIntDefs(int size, int bits) {
+        List<Definition> defs = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             String content = "test" + i;
             defs.add(new IntegerDefinition(IntegerDeclaration.createDeclaration(bits, false,
@@ -103,9 +93,9 @@ public class ArrayDefinition2Test {
         return defs;
     }
 
-    private static @NonNull List<@NonNull Definition> createDefs() {
+    private static @NotNull List<Definition> createDefs() {
         int size = 4;
-        List<@NonNull Definition> defs = new ArrayList<>();
+        List<Definition> defs = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             String content = "test" + i;
             defs.add(new StringDefinition(
@@ -123,7 +113,7 @@ public class ArrayDefinition2Test {
         CompoundDeclaration declaration = (CompoundDeclaration) charArrayFixture.getDeclaration();
         String fieldName = "";
 
-        ArrayDefinition result = new ArrayDefinition(declaration, this.trace, fieldName, Arrays.asList(new @NonNull Definition[0]));
+        ArrayDefinition result = new ArrayDefinition(declaration, this.trace, fieldName, Arrays.asList(new Definition[0]));
         assertNotNull(result);
     }
 
@@ -138,7 +128,7 @@ public class ArrayDefinition2Test {
         IDefinitionScope definitionScope = getDefinitionScope();
 
         String fieldName = "";
-        ArrayDefinition result = new ArrayDefinition(declaration, definitionScope, fieldName, Arrays.asList(new @NonNull Definition[0]));
+        ArrayDefinition result = new ArrayDefinition(declaration, definitionScope, fieldName, Arrays.asList(new Definition[0]));
         assertNotNull(result);
     }
 
@@ -168,7 +158,7 @@ public class ArrayDefinition2Test {
      */
     @Test
     public void testgetElem_withDefs() {
-        List<@NonNull Definition> defs = createDefs();
+        List<Definition> defs = createDefs();
         IDefinitionScope definitionScope = getDefinitionScope();
         ArrayDefinition ad = new ArrayDefinition((CompoundDeclaration) charArrayFixture.getDeclaration(), definitionScope, "test", defs);
         int j = 1;
@@ -178,8 +168,7 @@ public class ArrayDefinition2Test {
         assertNotNull(result);
     }
 
-    @NonNull
-    private static IDefinitionScope getDefinitionScope() {
+    private static @NotNull IDefinitionScope getDefinitionScope() {
         return new IDefinitionScope() {
 
             @Override

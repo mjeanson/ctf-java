@@ -9,20 +9,19 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.enumeration;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
-
-import java.math.BigInteger;
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.UnaryIntegerParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.UnaryStringParser;
+
+import java.math.BigInteger;
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
 
 /**
  * The parser for individual enumerators within an enum body
@@ -38,7 +37,6 @@ public final class EnumeratorParser implements ICommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final EnumDeclaration fEnumDeclaration;
 

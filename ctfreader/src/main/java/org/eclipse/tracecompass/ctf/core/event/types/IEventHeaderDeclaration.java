@@ -12,14 +12,11 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-
 /**
  * Event header declaration abstract class
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public interface IEventHeaderDeclaration extends IDeclaration {
     /**
      * The id of an event

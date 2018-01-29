@@ -11,7 +11,6 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
@@ -21,6 +20,7 @@ import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInput;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
+import org.jetbrains.annotations.NotNull;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -76,7 +76,7 @@ public class CTFStreamTest {
         fixture.addInput(fInput);
     }
 
-    private static @NonNull File createFile() throws CTFException {
+    private static @NotNull File createFile() throws CTFException {
         File path = new File(testTraceWrapper.getTrace().getPath());
         final File[] listFiles = path.listFiles(new FilenameFilter() {
             @Override

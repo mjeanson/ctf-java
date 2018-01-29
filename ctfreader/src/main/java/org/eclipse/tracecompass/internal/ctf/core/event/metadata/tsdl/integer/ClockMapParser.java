@@ -10,8 +10,8 @@
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.integer;
 
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A reference to the clock map in a given integer.
@@ -21,7 +21,7 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreePars
  */
 public final class ClockMapParser implements ICommonTreeParser {
 
-    private static final @NonNull String EMPTY_STRING = ""; //$NON-NLS-1$
+    private static final @NotNull String EMPTY_STRING = ""; //$NON-NLS-1$
 
     /**
      * Instance

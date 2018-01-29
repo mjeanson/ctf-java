@@ -12,8 +12,8 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A CTF string definition (similar to a C null-terminated byte array).
@@ -49,8 +49,8 @@ public final class StringDefinition extends Definition {
      * @param value
      *            The String value
      */
-    public StringDefinition(@NonNull StringDeclaration declaration,
-            IDefinitionScope definitionScope, @NonNull String fieldName, String value) {
+    public StringDefinition(@NotNull StringDeclaration declaration,
+                            IDefinitionScope definitionScope, @NotNull String fieldName, String value) {
         super(declaration, definitionScope, fieldName);
         fString = value;
     }

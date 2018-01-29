@@ -11,8 +11,8 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Simple Datatype definition is a datatype that allows the addition of
@@ -33,8 +33,8 @@ public abstract class SimpleDatatypeDefinition extends Definition {
      *            The name of the field matching this definition in the parent
      *            scope
      */
-    public SimpleDatatypeDefinition(@NonNull IDeclaration declaration, IDefinitionScope definitionScope,
-            @NonNull String fieldName) {
+    public SimpleDatatypeDefinition(@NotNull IDeclaration declaration, IDefinitionScope definitionScope,
+                                    @NotNull String fieldName) {
         super(declaration, definitionScope, fieldName);
     }
 

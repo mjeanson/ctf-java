@@ -11,26 +11,17 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.event;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.SequenceDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StringDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>CTFEventFieldTest</code> contains tests for the class
@@ -42,8 +33,7 @@ import org.junit.Test;
 @SuppressWarnings("javadoc")
 public class CTFEventFieldTest {
 
-    @NonNull
-    private static final String fieldName = "id";
+    private static final @NotNull String fieldName = "id";
 
     /**
      * Run the CTFEventField parseField(Definition,String) method test.
@@ -87,8 +77,7 @@ public class CTFEventFieldTest {
         assertNotNull(fieldDef);
     }
 
-    @NonNull
-    private static ByteBuffer testMemory(ByteBuffer buffer) {
+    private static @NotNull ByteBuffer testMemory(ByteBuffer buffer) {
         if (buffer == null) {
             throw new IllegalStateException("Failed to allocate memory");
         }

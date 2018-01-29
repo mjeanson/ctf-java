@@ -8,18 +8,7 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isUnaryInteger;
-
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.ArrayDeclaration;
@@ -32,6 +21,12 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedC
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.event.EventScopeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.stream.StreamScopeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.trace.TraceScopeParser;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.*;
 
 /**
  * A type declarator parser
@@ -47,7 +42,6 @@ public final class TypeDeclaratorParser extends AbstractScopedCommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final DeclarationScope fDeclarationScope;
         private final CommonTree fListNode;
@@ -105,7 +99,7 @@ public final class TypeDeclaratorParser extends AbstractScopedCommonTreeParser {
         CommonTree typeSpecifierList = ((Param) param).fListNode;
 
         IDeclaration declaration = null;
-        List<@NonNull CommonTree> pointers = new LinkedList<>();
+        List<CommonTree> pointers = new LinkedList<>();
         List<CommonTree> lengths = new LinkedList<>();
         CommonTree identifier = null;
 

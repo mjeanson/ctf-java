@@ -10,13 +10,11 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.ctf.core.event.scope;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @since 1.0
  */
-@NonNullByDefault
 public interface ILexicalScope {
     /**
      * Empty string
@@ -137,8 +135,7 @@ public interface ILexicalScope {
      *            the child
      * @return the scope, can be null
      */
-    @Nullable
-    ILexicalScope getChild(String name);
+    @Nullable ILexicalScope getChild(String name);
 
     // -------------------------------------------------------------------------
     // helpers

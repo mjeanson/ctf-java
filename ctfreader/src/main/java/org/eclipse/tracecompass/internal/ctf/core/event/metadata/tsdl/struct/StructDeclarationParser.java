@@ -8,10 +8,7 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.struct;
 
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
@@ -20,6 +17,8 @@ import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedCommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypeDeclaratorParser;
+
+import java.util.List;
 
 /**
  * Structures follow the ISO/C standard for structures
@@ -35,7 +34,6 @@ public final class StructDeclarationParser extends AbstractScopedCommonTreeParse
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final StructDeclaration fStruct;
         private final DeclarationScope fDeclarationScope;

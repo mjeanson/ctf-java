@@ -11,18 +11,16 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * Array definition, used for compound definitions and fixed length strings
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public abstract class AbstractArrayDefinition extends Definition {
 
     /**
@@ -46,7 +44,7 @@ public abstract class AbstractArrayDefinition extends Definition {
      *
      * @return the definitions
      */
-    public abstract List<@Nullable Definition> getDefinitions();
+    public abstract List<Definition> getDefinitions();
 
     /**
      * Get the the number of elements in the array

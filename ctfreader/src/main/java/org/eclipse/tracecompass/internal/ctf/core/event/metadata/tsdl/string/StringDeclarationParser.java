@@ -8,19 +8,17 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.string;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
-
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
 import org.eclipse.tracecompass.ctf.core.event.types.StringDeclaration;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.*;
 
 /**
  * Strings are an array of bytes of variable size and are terminated by a '\0'
@@ -54,7 +52,7 @@ public final class StringDeclarationParser implements ICommonTreeParser {
      */
     public static final StringDeclarationParser INSTANCE = new StringDeclarationParser();
 
-    private static final @NonNull String ENCODING = "encoding"; //$NON-NLS-1$
+    private static final @NotNull String ENCODING = "encoding"; //$NON-NLS-1$
 
     private StringDeclarationParser() {
     }

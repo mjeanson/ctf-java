@@ -12,9 +12,9 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A CTF definition
@@ -40,12 +40,11 @@ public abstract class Definition implements IDefinition {
     private final String fFieldName;
 
     /** The complete path of this field */
-    private final @NonNull ILexicalScope fPath;
+    private final @NotNull ILexicalScope fPath;
 
     private final IDefinitionScope fDefinitionScope;
 
-    @NonNull
-    private final IDeclaration fDeclaration;
+    private final @NotNull IDeclaration fDeclaration;
 
     // ------------------------------------------------------------------------
     // Constructors
@@ -62,7 +61,7 @@ public abstract class Definition implements IDefinition {
      *            the name of the definition. (it is a field in the parent
      *            scope)
      */
-    public Definition(@NonNull IDeclaration declaration, IDefinitionScope definitionScope, @NonNull String fieldName) {
+    public Definition(@NotNull IDeclaration declaration, IDefinitionScope definitionScope, @NotNull String fieldName) {
         this(declaration, definitionScope, fieldName, declaration.getPath(definitionScope, fieldName));
     }
 
@@ -84,7 +83,7 @@ public abstract class Definition implements IDefinition {
      *            the scope
      * @since 1.0
      */
-    public Definition(@NonNull IDeclaration declaration, IDefinitionScope definitionScope, @NonNull String fieldName, @NonNull ILexicalScope scope) {
+    public Definition(@NotNull IDeclaration declaration, IDefinitionScope definitionScope, @NotNull String fieldName, @NotNull ILexicalScope scope) {
         fDeclaration = declaration;
         fDefinitionScope = definitionScope;
         fFieldName = fieldName;

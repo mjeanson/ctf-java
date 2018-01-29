@@ -8,17 +8,15 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.trace;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
-
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.ICommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.stream.StreamScopeParser;
+
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
 
 /**
  * TSDL uses three different types of scoping: a lexical scope is used for
@@ -38,7 +36,6 @@ public final class TraceScopeParser implements ICommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final List<CommonTree> fList;
 
@@ -81,7 +78,7 @@ public final class TraceScopeParser implements ICommonTreeParser {
         if (!(param instanceof Param)) {
             throw new IllegalArgumentException("Param must be a " + Param.class.getCanonicalName()); //$NON-NLS-1$
         }
-        List<@NonNull CommonTree> lengthChildren = ((Param) param).fList;
+        List<CommonTree> lengthChildren = ((Param) param).fList;
         CommonTree nextElem = (CommonTree) lengthChildren.get(1).getChild(0);
         switch (nextElem.getType()) {
         case CTFParser.IDENTIFIER:

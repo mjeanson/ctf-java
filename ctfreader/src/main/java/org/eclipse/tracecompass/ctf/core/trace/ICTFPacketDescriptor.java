@@ -11,9 +11,9 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.ctf.core.trace;
 
-import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
-import org.eclipse.jdt.annotation.NonNull;
+import java.util.Map;
 
 /**
  * CTF Packet descriptor, can come from a packet header or an index file, this
@@ -88,7 +88,7 @@ public interface ICTFPacketDescriptor {
      *         "timestamp_begin"
      * @since 2.0
      */
-    @NonNull Map<String, Object> getAttributes();
+    @NotNull Map<String, Object> getAttributes();
 
     /**
      * Get the target of the packet (what device generated this packet)

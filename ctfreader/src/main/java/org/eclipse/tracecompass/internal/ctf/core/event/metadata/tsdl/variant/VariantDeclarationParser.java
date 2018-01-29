@@ -8,10 +8,7 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.variant;
 
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
@@ -20,6 +17,8 @@ import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedCommonTreeParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypeDeclaratorParser;
+
+import java.util.List;
 
 /**
  * This parses the (sub)declarations located IN a variant declaration.
@@ -32,9 +31,7 @@ public final class VariantDeclarationParser extends AbstractScopedCommonTreePars
      * Parameter Object
      *
      * @author Matthew Khouzam
-     *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final VariantDeclaration fVariant;
         private final DeclarationScope fDeclarationScope;
@@ -43,12 +40,9 @@ public final class VariantDeclarationParser extends AbstractScopedCommonTreePars
         /**
          * Parameter Object Contructor
          *
-         * @param variant
-         *            variant declaration to populate
-         * @param trace
-         *            trace
-         * @param scope
-         *            current scope
+         * @param variant variant declaration to populate
+         * @param trace   trace
+         * @param scope   current scope
          */
         public Param(VariantDeclaration variant, CTFTrace trace, DeclarationScope scope) {
             fVariant = variant;
@@ -69,13 +63,10 @@ public final class VariantDeclarationParser extends AbstractScopedCommonTreePars
      * Parses the variant declaration and gets a {@link VariantDeclaration}
      * back.
      *
-     * @param declaration
-     *            the variant declaration AST node
-     * @param param
-     *            the {@link Param} parameter object
+     * @param declaration the variant declaration AST node
+     * @param param       the {@link Param} parameter object
      * @return the {@link VariantDeclaration}
-     * @throws ParseException
-     *             if the AST is malformed
+     * @throws ParseException if the AST is malformed
      */
     @Override
     public VariantDeclaration parse(CommonTree declaration, ICommonTreeParserParameter param) throws ParseException {

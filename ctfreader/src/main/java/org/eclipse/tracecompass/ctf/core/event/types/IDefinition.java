@@ -12,7 +12,6 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
 
 /**
@@ -21,7 +20,6 @@ import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public interface IDefinition {
 
     /**

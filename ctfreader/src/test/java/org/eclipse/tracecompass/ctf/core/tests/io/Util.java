@@ -11,9 +11,9 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.io;
 
-import java.nio.ByteBuffer;
+import org.jetbrains.annotations.NotNull;
 
-import org.eclipse.jdt.annotation.NonNull;
+import java.nio.ByteBuffer;
 
 /**
  * Helpers for the tests
@@ -32,8 +32,7 @@ public final class Util {
      *            a potentially null byte buffer
      * @return a non-null byte buffer or an illegal state exception
      */
-    @NonNull
-    public static ByteBuffer testMemory(ByteBuffer buffer) {
+    public static @NotNull ByteBuffer testMemory(ByteBuffer buffer) {
         if (buffer == null) {
             throw new IllegalStateException("Failed to alloc");
         }

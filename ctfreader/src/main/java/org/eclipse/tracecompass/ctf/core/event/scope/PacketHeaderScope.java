@@ -12,15 +12,12 @@
 
 package org.eclipse.tracecompass.ctf.core.event.scope;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-
 /**
  * A lttng specific speedup node (the packet header with magic, uuid and stream
  * id ) of a lexical scope the sole reason to have this is to accelerate tostring()
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public class PacketHeaderScope extends LexicalScope {
 
     /**

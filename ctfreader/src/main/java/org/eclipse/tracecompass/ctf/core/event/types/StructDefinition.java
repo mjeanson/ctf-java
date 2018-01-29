@@ -12,20 +12,19 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration.InternalDef;
-
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
+import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
+import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration.InternalDef;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A CTF structure definition (similar to a C structure).
@@ -46,7 +45,7 @@ public final class StructDefinition extends ScopedDefinition implements IComposi
     // Attributes
     // ------------------------------------------------------------------------
 
-    private final @NonNull List<@NonNull String> fFieldNames;
+    private final @NotNull List<String> fFieldNames;
     private final Definition[] fDefinitions;
     private Map<String, Definition> fDefinitionsMap = null;
 
@@ -67,9 +66,9 @@ public final class StructDefinition extends ScopedDefinition implements IComposi
      *            the definitions
      * @since 1.0
      */
-    public StructDefinition(@NonNull StructDeclaration declaration,
+    public StructDefinition(@NotNull StructDeclaration declaration,
             IDefinitionScope definitionScope,
-            @NonNull String structFieldName,
+            @NotNull String structFieldName,
             Definition[] definitions) {
         super(declaration, definitionScope, structFieldName);
         fFieldNames = ImmutableList.copyOf(declaration.getFieldsList());
@@ -97,11 +96,11 @@ public final class StructDefinition extends ScopedDefinition implements IComposi
      *            the definitions
      * @since 1.0
      */
-    public StructDefinition(@NonNull StructDeclaration declaration,
+    public StructDefinition(@NotNull StructDeclaration declaration,
             IDefinitionScope definitionScope,
-            @NonNull ILexicalScope scope,
-            @NonNull String structFieldName,
-            @NonNull Iterable<@NonNull String> fieldNames,
+            @NotNull ILexicalScope scope,
+            @NotNull String structFieldName,
+            @NotNull Iterable<String> fieldNames,
             Definition[] definitions) {
         super(declaration, definitionScope, structFieldName, scope);
         fFieldNames = ImmutableList.copyOf(fieldNames);
@@ -131,7 +130,7 @@ public final class StructDefinition extends ScopedDefinition implements IComposi
     }
 
     @Override
-    public @NonNull List<@NonNull String> getFieldNames() {
+    public @NotNull List<String> getFieldNames() {
         return fFieldNames;
     }
 

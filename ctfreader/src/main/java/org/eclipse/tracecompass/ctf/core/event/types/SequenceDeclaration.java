@@ -11,21 +11,19 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.Collection;
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
-import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.google.common.collect.Multimap;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
+import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Collection;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * A CTF sequence declaration.
@@ -123,13 +121,13 @@ public class SequenceDeclaration extends CompoundDeclaration {
             fPaths.put(fieldName, fieldName + '[' + collection.size() + ']');
         }
         List<String> paths = (List<String>) fPaths.get(fieldName);
-        Builder<@NonNull Definition> definitions = new ImmutableList.Builder<>();
+        Builder<Definition> definitions = new ImmutableList.Builder<>();
         for (int i = 0; i < length; i++) {
             /* We should not have inserted any null values */
             String elemName = requireNonNull(paths.get(i));
             definitions.add(fElemType.createDefinition(definitionScope, elemName, input));
         }
-        List<@NonNull Definition> list = definitions.build();
+        List<Definition> list = definitions.build();
         return new ArrayDefinition(this, definitionScope, fieldName, list);
     }
 

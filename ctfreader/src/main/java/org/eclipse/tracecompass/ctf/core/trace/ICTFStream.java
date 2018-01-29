@@ -12,15 +12,15 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
-import java.util.List;
-import java.util.Set;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Set;
 
 /**
  * An _event stream_ can be divided into contiguous event packets of variable
@@ -109,8 +109,7 @@ public interface ICTFStream {
      * @return The event declarations for this stream
      * @since 2.0
      */
-    @NonNull
-    List<@Nullable IEventDeclaration> getEventDeclarations();
+    @NotNull List<IEventDeclaration> getEventDeclarations();
 
     /**
      * Get the event declaration for a given ID.
@@ -123,7 +122,6 @@ public interface ICTFStream {
      * @throws IllegalArgumentException
      *             If the passed ID is invalid
      */
-    @Nullable
-    IEventDeclaration getEventDeclaration(int eventId);
+    @Nullable IEventDeclaration getEventDeclaration(int eventId);
 
 }

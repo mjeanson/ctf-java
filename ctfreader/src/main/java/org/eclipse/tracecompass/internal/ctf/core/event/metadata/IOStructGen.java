@@ -14,13 +14,8 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.common.collect.Iterables;
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.CTFClock;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
@@ -35,8 +30,12 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.event.Even
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.stream.StreamParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.trace.TraceDeclarationParser;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
+import org.jetbrains.annotations.NotNull;
 
-import com.google.common.collect.Iterables;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * IOStructGen
@@ -50,13 +49,13 @@ public class IOStructGen {
     /**
      * The trace
      */
-    private final @NonNull CTFTrace fTrace;
+    private final @NotNull CTFTrace fTrace;
     private CommonTree fTree;
 
     /**
      * The current declaration scope.
      */
-    private final @NonNull DeclarationScope fRoot;
+    private final @NotNull DeclarationScope fRoot;
 
     /**
      * Data helpers needed for streaming
@@ -76,7 +75,7 @@ public class IOStructGen {
      * @param trace
      *            the trace containing the places to put all the read metadata
      */
-    public IOStructGen(CommonTree tree, @NonNull CTFTrace trace) {
+    public IOStructGen(CommonTree tree, @NotNull CTFTrace trace) {
         fTrace = trace;
         fTree = tree;
         fRoot = requireNonNull(trace.getScope());

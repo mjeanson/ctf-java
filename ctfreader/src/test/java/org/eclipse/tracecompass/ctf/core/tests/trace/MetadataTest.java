@@ -12,7 +12,6 @@
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
 import com.google.common.collect.Iterables;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
@@ -21,6 +20,7 @@ import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.ctf.core.trace.Metadata;
+import org.jetbrains.annotations.Nullable;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;

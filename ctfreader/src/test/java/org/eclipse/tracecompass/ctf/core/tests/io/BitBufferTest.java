@@ -11,17 +11,17 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.io;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>BitBufferTest</code> contains tests for the class
@@ -175,7 +175,7 @@ public class BitBufferTest {
      */
     @Test
     public void testGetBytes() {
-        byte @NonNull [] data = new byte[2];
+        @NotNull byte[] data = new byte[2];
         ByteBuffer bb = ByteBuffer.allocate(10);
         bb.put((byte) 0);
         bb.put((byte) 1);
@@ -198,7 +198,7 @@ public class BitBufferTest {
      */
     @Test
     public void testGetBytesMiddle() throws CTFException {
-        byte @NonNull [] data = new byte[5];
+        @NotNull byte[] data = new byte[5];
         // this string has been carefully selected and tested... don't change
         // the string and expect the result to be the same.
         fixture = new BitBuffer(Util.testMemory(ByteBuffer.wrap(new String("hello world").getBytes())));

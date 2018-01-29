@@ -13,8 +13,6 @@
 
 package org.eclipse.tracecompass.ctf.core;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-
 /**
  * Non-externalized strings for use with the CTF plugin (event names, field
  * names, etc.)
@@ -23,7 +21,6 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
  * @noimplement This interface only contains static definitions.
  */
 @SuppressWarnings("nls")
-@NonNullByDefault
 public interface CTFStrings {
 
     /** Event name for lost events */

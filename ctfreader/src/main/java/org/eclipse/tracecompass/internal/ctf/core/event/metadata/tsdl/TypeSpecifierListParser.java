@@ -8,15 +8,7 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-
-import java.nio.ByteOrder;
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
@@ -34,6 +26,12 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.struct.Str
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.variant.VariantParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.types.composite.EventHeaderCompactDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.types.composite.EventHeaderLargeDeclaration;
+import org.jetbrains.annotations.Nullable;
+
+import java.nio.ByteOrder;
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
 
 /**
  * Parse the specifiers. Make sure they are known types. This can be seen as a
@@ -50,7 +48,6 @@ public final class TypeSpecifierListParser extends AbstractScopedCommonTreeParse
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final DeclarationScope fDeclarationScope;
         private final @Nullable List<CommonTree> fListNode;
@@ -104,7 +101,7 @@ public final class TypeSpecifierListParser extends AbstractScopedCommonTreeParse
             throw new IllegalArgumentException("Param must be a " + Param.class.getCanonicalName()); //$NON-NLS-1$
         }
         final DeclarationScope scope = ((Param) param).fDeclarationScope;
-        List<@NonNull CommonTree> pointerList = ((Param) param).fListNode;
+        List<CommonTree> pointerList = ((Param) param).fListNode;
         CTFTrace trace = ((Param) param).fTrace;
         CommonTree identifier = ((Param) param).fIdentifier;
         IDeclaration declaration = null;

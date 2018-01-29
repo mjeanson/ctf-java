@@ -12,23 +12,15 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.types.composite;
 
-import java.nio.ByteOrder;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-import org.eclipse.tracecompass.ctf.core.event.types.Declaration;
-import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
-import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IEventHeaderDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.VariantDeclaration;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.jetbrains.annotations.Nullable;
+
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An event header declaration is a declaration of a structure defined in the
@@ -54,7 +46,6 @@ import org.eclipse.tracecompass.ctf.core.event.types.VariantDeclaration;
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public final class EventHeaderLargeDeclaration extends Declaration implements IEventHeaderDeclaration {
 
     private static final int ALIGN_ON_1 = 1;

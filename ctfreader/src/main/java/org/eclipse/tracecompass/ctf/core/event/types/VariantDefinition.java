@@ -12,8 +12,8 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A CTF variant definition (similar to a C union).
@@ -54,8 +54,8 @@ public final class VariantDefinition extends ScopedDefinition {
      * @param fieldValue
      *            the field value
      */
-    public VariantDefinition(@NonNull VariantDeclaration declaration,
-            IDefinitionScope definitionScope, String selectedField, @NonNull String fieldName, Definition fieldValue) {
+    public VariantDefinition(@NotNull VariantDeclaration declaration,
+            IDefinitionScope definitionScope, String selectedField, @NotNull String fieldName, Definition fieldValue) {
         super(declaration, definitionScope, fieldName);
 
         fFieldName = fieldName;

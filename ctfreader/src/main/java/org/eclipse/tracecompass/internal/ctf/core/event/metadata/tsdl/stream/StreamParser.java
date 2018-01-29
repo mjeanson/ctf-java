@@ -9,12 +9,7 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.stream;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
@@ -24,6 +19,10 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypeAliasParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypedefParser;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
+
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
 
 /**
  * A stream is a collection of packets with events in them. It will contain data
@@ -40,7 +39,6 @@ public final class StreamParser extends AbstractScopedCommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
 
         private final DeclarationScope fCurrentScope;

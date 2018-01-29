@@ -11,15 +11,15 @@
 
 package org.eclipse.tracecompass.ctf.core.event;
 
-import java.util.Set;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInputReader;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Set;
 
 /**
  * Representation of one type of event. A bit like "int" or "long" but for trace
@@ -53,7 +53,7 @@ public interface IEventDeclaration {
      *             IOExceptions.
      * @since 2.0
      */
-    IEventDefinition createDefinition(CTFStreamInputReader streamInputReader, @NonNull BitBuffer input, long timestamp) throws CTFException;
+    IEventDefinition createDefinition(CTFStreamInputReader streamInputReader, @NotNull BitBuffer input, long timestamp) throws CTFException;
 
     /**
      * Gets the name of an event declaration
@@ -103,7 +103,7 @@ public interface IEventDeclaration {
      *
      * @return The set of custom attributes
      */
-    @NonNull Set<@NonNull String> getCustomAttributes();
+    @NotNull Set<String> getCustomAttributes();
 
     /**
      * Get the value of a given CTF attribute.

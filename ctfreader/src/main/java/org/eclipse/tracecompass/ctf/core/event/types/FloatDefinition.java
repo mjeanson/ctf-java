@@ -11,8 +11,8 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A CTF float definition.
@@ -47,8 +47,8 @@ public final class FloatDefinition extends Definition {
      * @param value
      *            field value
      */
-    public FloatDefinition(@NonNull FloatDeclaration declaration,
-            IDefinitionScope definitionScope, @NonNull String fieldName, double value) {
+    public FloatDefinition(@NotNull FloatDeclaration declaration,
+            IDefinitionScope definitionScope, @NotNull String fieldName, double value) {
         super(declaration, definitionScope, fieldName);
         fValue = value;
     }

@@ -14,16 +14,15 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import static java.util.Objects.requireNonNull;
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
+import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.Nullable;
 
 import java.math.BigInteger;
 import java.nio.ByteOrder;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
-import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import static java.util.Objects.requireNonNull;
 
 /**
  * A CTF integer declaration.
@@ -34,7 +33,6 @@ import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
  * @author Matthew Khouzam
  * @author Simon Marchi
  */
-@NonNullByDefault
 public final class IntegerDeclaration extends Declaration implements ISimpleDatatypeDeclaration {
 
     // ------------------------------------------------------------------------
@@ -150,7 +148,7 @@ public final class IntegerDeclaration extends Declaration implements ISimpleData
      * @return the integer declaration
      */
     public static IntegerDeclaration createDeclaration(int len, boolean signed, int base,
-            @Nullable ByteOrder byteOrder, Encoding encoding, String clock, long alignment) {
+                                                       @Nullable ByteOrder byteOrder, Encoding encoding, String clock, long alignment) {
         if (encoding.equals(Encoding.NONE) && (clock.equals("")) && base == BASE_10 && byteOrder != null) { //$NON-NLS-1$
             if (alignment == BYTE_ALIGN) {
                 switch (len) {

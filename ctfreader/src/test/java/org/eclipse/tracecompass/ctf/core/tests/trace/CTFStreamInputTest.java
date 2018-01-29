@@ -11,27 +11,23 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.trace;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.io.File;
-import java.io.FilenameFilter;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
 import org.eclipse.tracecompass.ctf.core.tests.shared.CtfTestTraceExtractor;
 import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInput;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
+import org.jetbrains.annotations.NotNull;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.lttng.scope.ttt.ctf.CtfTestTrace;
+
+import java.io.File;
+import java.io.FilenameFilter;
+
+import static org.junit.Assert.*;
 
 /**
  * The class <code>StreamInputTest</code> contains tests for the class
@@ -69,7 +65,7 @@ public class CTFStreamInputTest {
         fixture.setTimestampEnd(1L);
     }
 
-    private static @NonNull File createFile() throws CTFException {
+    private static @NotNull File createFile() throws CTFException {
         File path = new File(testTraceWrapper.getTrace().getPath());
         final File[] listFiles = path.listFiles(new FilenameFilter() {
             @Override

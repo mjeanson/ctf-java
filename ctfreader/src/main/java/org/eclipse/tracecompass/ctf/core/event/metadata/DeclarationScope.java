@@ -12,17 +12,17 @@
 
 package org.eclipse.tracecompass.ctf.core.event.metadata;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.types.EnumDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.VariantDeclaration;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * <b><u>DeclarationScope</u></b>
@@ -45,7 +45,7 @@ public class DeclarationScope {
     // ------------------------------------------------------------------------
 
     private DeclarationScope fParentScope;
-    private @NonNull Map<String, DeclarationScope> fChildren = new HashMap<>();
+    private @NotNull Map<String, DeclarationScope> fChildren = new HashMap<>();
 
     private final Map<String, StructDeclaration> fStructs = new HashMap<>();
     private final Map<String, EnumDeclaration> fEnums = new HashMap<>();

@@ -12,10 +12,9 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Scoped defintion. a defintion where you can lookup various datatypes
@@ -24,7 +23,6 @@ import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public abstract class ScopedDefinition extends Definition implements IDefinitionScope {
 
     /**

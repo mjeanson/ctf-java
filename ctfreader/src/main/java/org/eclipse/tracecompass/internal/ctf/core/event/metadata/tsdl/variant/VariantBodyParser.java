@@ -8,15 +8,7 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.variant;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
@@ -27,6 +19,13 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedC
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypeAliasParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypedefParser;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
 
 /**
  * Variant body parser. This handles all the inside of a variant, so it handles
@@ -43,7 +42,6 @@ public final class VariantBodyParser extends AbstractScopedCommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final DeclarationScope fDeclarationScope;
         private final @Nullable String fName;

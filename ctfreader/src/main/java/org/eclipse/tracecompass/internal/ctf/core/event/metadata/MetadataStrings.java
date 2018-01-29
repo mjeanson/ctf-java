@@ -11,8 +11,6 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-
 /**
  * Strings generated from the TSDL grammar. Note that they are static final so
  * they get quarked. See CTF specs for more details
@@ -20,7 +18,6 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
  * @author Matthew Khouzam and All
  */
 @SuppressWarnings("nls")
-@NonNullByDefault
 public interface MetadataStrings {
 
     /** None */

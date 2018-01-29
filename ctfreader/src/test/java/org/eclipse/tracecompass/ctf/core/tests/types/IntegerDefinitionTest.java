@@ -11,21 +11,21 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.types;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>IntegerDefinitionTest</code> contains tests for the class
@@ -37,8 +37,8 @@ import org.junit.Test;
 public class IntegerDefinitionTest {
 
     private IntegerDefinition fixture;
-    @NonNull private static final String NAME = "testInt";
-    @NonNull private static final String clockName = "clock";
+    private static final @NotNull String NAME = "testInt";
+    private static final @NotNull String clockName = "clock";
 
     /**
      * Perform pre-test initialization.

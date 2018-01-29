@@ -14,8 +14,6 @@ package org.eclipse.tracecompass.ctf.core.event.types;
 
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * Interface for data definitions containing heterogenous definitions
  * (subfields)
@@ -38,6 +36,6 @@ public interface ICompositeDefinition extends IDefinition {
      *
      * @return the field names array
      */
-    List<@NonNull String> getFieldNames();
+    List<String> getFieldNames();
 
 }

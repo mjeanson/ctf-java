@@ -12,8 +12,7 @@
 
 package org.eclipse.tracecompass.ctf.core.event.scope;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A lttng specific speedup node a root with accelerated returns for some scopes
@@ -21,7 +20,6 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public final class RootScope extends LexicalScope {
 
     /**
@@ -32,8 +30,7 @@ public final class RootScope extends LexicalScope {
     }
 
     @Override
-    @Nullable
-    public ILexicalScope getChild(String name) {
+    public @Nullable ILexicalScope getChild(String name) {
         /*
          * This happens ~40 % of the time
          */

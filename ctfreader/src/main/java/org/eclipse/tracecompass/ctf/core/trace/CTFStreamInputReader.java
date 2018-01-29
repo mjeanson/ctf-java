@@ -12,17 +12,6 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileChannel.MapMode;
-import java.nio.file.StandardOpenOption;
-import java.util.List;
-import java.util.logging.Logger;
-
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.IEventDefinition;
@@ -32,6 +21,16 @@ import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.SafeMappedByteBuffer;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFPacketReader;
 import org.eclipse.tracecompass.internal.ctf.core.trace.NullPacketReader;
+import org.jetbrains.annotations.Nullable;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileChannel.MapMode;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * A CTF trace event reader. Reads the events of a trace file.
@@ -40,7 +39,6 @@ import org.eclipse.tracecompass.internal.ctf.core.trace.NullPacketReader;
  * @author Simon Marchi
  * @since 2.0
  */
-@NonNullByDefault
 public class CTFStreamInputReader implements AutoCloseable {
 
     private static final Logger LOGGER = Logger.getLogger(CTFStreamInputReader.class.getName());
@@ -253,7 +251,7 @@ public class CTFStreamInputReader implements AutoCloseable {
      * @return Unmodifiable set with the event definitions
      * @since 2.0
      */
-    public List<@Nullable IEventDeclaration> getEventDeclarations() {
+    public List<IEventDeclaration> getEventDeclarations() {
         return fStreamInput.getStream().getEventDeclarations();
     }
 

@@ -12,20 +12,14 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.nio.ByteOrder;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.eclipse.jdt.annotation.Nullable;
+import com.google.common.collect.ImmutableMap;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.Nullable;
 
-import com.google.common.collect.ImmutableMap;
+import java.nio.ByteOrder;
+import java.util.*;
 
 /**
  * A CTF enum declaration.

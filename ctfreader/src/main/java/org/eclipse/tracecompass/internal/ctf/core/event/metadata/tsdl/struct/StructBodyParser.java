@@ -8,14 +8,7 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.struct;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
-
-import java.util.Collections;
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
@@ -25,6 +18,12 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.AbstractScopedC
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypeAliasParser;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TypedefParser;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Collections;
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.childTypeError;
 
 /**
  * A struct body can have any of the following elements, even though some of
@@ -71,7 +70,6 @@ public final class StructBodyParser extends AbstractScopedCommonTreeParser {
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final DeclarationScope fDeclarationScope;
         private final @Nullable String fName;

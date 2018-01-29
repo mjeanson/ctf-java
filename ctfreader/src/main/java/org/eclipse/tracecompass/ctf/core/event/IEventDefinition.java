@@ -9,10 +9,10 @@
 
 package org.eclipse.tracecompass.ctf.core.event;
 
-import java.util.Map;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.types.ICompositeDefinition;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Map;
 
 /**
  * IEventDefinition, an interface for representing individual events.
@@ -88,6 +88,6 @@ public interface IEventDefinition {
      *
      * @return the packet attributes, such as "device" and "timestamp_begin"
      */
-    @NonNull Map<@NonNull String, @NonNull Object> getPacketAttributes();
+    @NotNull Map<String, Object> getPacketAttributes();
 
 }

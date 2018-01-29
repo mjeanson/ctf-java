@@ -14,25 +14,7 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.io.Serializable;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.channels.FileChannel;
-import java.nio.channels.FileChannel.MapMode;
-import java.nio.file.StandardOpenOption;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
-import org.eclipse.jdt.annotation.NonNull;
+import com.google.common.collect.ImmutableMap;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.CTFStrings;
 import org.eclipse.tracecompass.ctf.core.event.CTFClock;
@@ -42,18 +24,23 @@ import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.AbstractArrayDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
 import org.eclipse.tracecompass.internal.ctf.core.SafeMappedByteBuffer;
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.MetadataStrings;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
 import org.eclipse.tracecompass.internal.ctf.core.trace.Utils;
+import org.jetbrains.annotations.NotNull;
 
-import com.google.common.collect.ImmutableMap;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.io.Serializable;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.channels.FileChannel;
+import java.nio.channels.FileChannel.MapMode;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 
 /**
  * A CTF trace on the file system.
@@ -448,8 +435,6 @@ public class CTFTrace implements IDefinitionScope {
      *
      * @param streamFile
      *            A trace file in the trace directory.
-     * @param index
-     *            Which index in the class' streamFileChannel array this file
      *            must use
      * @throws CTFException
      *             if there is a file error
@@ -850,7 +835,7 @@ public class CTFTrace implements IDefinitionScope {
      *            The environment map
      * @since 2.0
      */
-    public void setEnvironment(@NonNull Map<String, String> parseEnvironment) {
+    public void setEnvironment(@NotNull Map<String, String> parseEnvironment) {
         fEnvironment = ImmutableMap.copyOf(parseEnvironment);
     }
 }

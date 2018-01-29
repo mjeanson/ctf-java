@@ -14,19 +14,14 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.trace;
 
-import static java.util.Objects.requireNonNull;
+import org.eclipse.tracecompass.ctf.core.trace.ICTFPacketDescriptor;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.logging.Logger;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.trace.ICTFPacketDescriptor;
+import static java.util.Objects.requireNonNull;
 
 /**
  * <b><u>StreamInputPacketIndex</u></b>
@@ -91,7 +86,7 @@ public class StreamInputPacketIndex {
      *            element to be appended to this index, cannot be null
      * @return {@code true} (as specified by {@link Collection#add})
      */
-    public synchronized boolean append(@NonNull ICTFPacketDescriptor entry) {
+    public synchronized boolean append(@NotNull ICTFPacketDescriptor entry) {
         ICTFPacketDescriptor entryToAdd = entry;
         /* Validate consistent entry. */
         if (entryToAdd.getTimestampBegin() > entryToAdd.getTimestampEnd()) {

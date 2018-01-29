@@ -12,26 +12,13 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.trace;
 
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.CTFStrings;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.ICompositeDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IEventHeaderDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.SimpleDatatypeDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.VariantDefinition;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
 import org.eclipse.tracecompass.ctf.core.trace.CTFIOException;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFPacketDescriptor;
 import org.eclipse.tracecompass.ctf.core.trace.IPacketReader;
@@ -39,12 +26,14 @@ import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDefinition;
 import org.eclipse.tracecompass.internal.ctf.core.event.LostEventDeclaration;
 import org.eclipse.tracecompass.internal.ctf.core.event.types.composite.EventHeaderDefinition;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * Packet reader with a fixed bit buffer, should be the fast and easily
  * parallelizable one.
  */
-@NonNullByDefault
 public final class CTFPacketReader implements IPacketReader, IDefinitionScope {
 
     private static final IDefinitionScope EVENT_HEADER_SCOPE = new IDefinitionScope() {
@@ -62,7 +51,7 @@ public final class CTFPacketReader implements IPacketReader, IDefinitionScope {
 
     private final BitBuffer fInput;
     private final ICTFPacketDescriptor fPacketContext;
-    private final List<@Nullable IEventDeclaration> fDeclarations;
+    private final List<IEventDeclaration> fDeclarations;
     private boolean fHasLost;
     private long fLastTimestamp;
     private @Nullable final IDeclaration fStreamEventHeaderDecl;
@@ -94,7 +83,8 @@ public final class CTFPacketReader implements IPacketReader, IDefinitionScope {
      * @param packetScope
      *            the scope of the packetHeader
      */
-    public CTFPacketReader(BitBuffer input, ICTFPacketDescriptor packetContext, List<@Nullable IEventDeclaration> declarations, @Nullable IDeclaration eventHeaderDeclaration, @Nullable StructDeclaration streamContext, @Nullable ICompositeDefinition packetHeader,
+    public CTFPacketReader(BitBuffer input, ICTFPacketDescriptor packetContext, List<IEventDeclaration> declarations,
+                           @Nullable IDeclaration eventHeaderDeclaration, @Nullable StructDeclaration streamContext, @Nullable ICompositeDefinition packetHeader,
             IDefinitionScope packetScope) {
         fInput = input;
         fPacketContext = packetContext;

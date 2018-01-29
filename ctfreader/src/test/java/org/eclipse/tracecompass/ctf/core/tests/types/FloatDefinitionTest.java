@@ -11,20 +11,20 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.types;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.types.FloatDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.FloatDefinition;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * The class <code>IntegerDefinitionTest</code> contains tests for the class
@@ -40,8 +40,7 @@ public class FloatDefinitionTest {
     private FloatDefinition singleFixture;
     private FloatDefinition doubleFixture; // all the way.
     private FloatDeclaration parent;
-    @NonNull
-    private static final String fieldName = "float";
+    private static final @NotNull String fieldName = "float";
 
     /**
      * Perform pre-test initialization.
@@ -135,8 +134,7 @@ public class FloatDefinitionTest {
         assertEquals("2.0", result);
     }
 
-    @NonNull
-    private static BitBuffer create32BitFloatByteBuffer() {
+    private static @NotNull BitBuffer create32BitFloatByteBuffer() {
         float[] data = new float[2];
         data[0] = 2.0f;
         data[1] = 3.14f;
@@ -150,8 +148,7 @@ public class FloatDefinitionTest {
         return bb;
     }
 
-    @NonNull
-    private static BitBuffer create64BitFloatByteBuffer() {
+    private static @NotNull BitBuffer create64BitFloatByteBuffer() {
         double[] data = new double[2];
         data[0] = 2.0f;
         data[1] = 3.14f;

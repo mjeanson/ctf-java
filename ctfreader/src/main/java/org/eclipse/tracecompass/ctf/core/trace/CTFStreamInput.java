@@ -12,6 +12,18 @@
 
 package org.eclipse.tracecompass.ctf.core.trace;
 
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
+import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
+import org.eclipse.tracecompass.ctf.core.event.scope.LexicalScope;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.eclipse.tracecompass.internal.ctf.core.SafeMappedByteBuffer;
+import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputPacketIndex;
+import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputPacketIndexEntry;
+import org.eclipse.tracecompass.internal.ctf.core.trace.Utils;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -20,29 +32,11 @@ import java.nio.channels.FileChannel.MapMode;
 import java.nio.file.StandardOpenOption;
 import java.util.UUID;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
-import org.eclipse.tracecompass.ctf.core.CTFException;
-import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
-import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
-import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.scope.LexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.AbstractArrayDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
-import org.eclipse.tracecompass.internal.ctf.core.SafeMappedByteBuffer;
-import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputPacketIndex;
-import org.eclipse.tracecompass.internal.ctf.core.trace.StreamInputPacketIndexEntry;
-import org.eclipse.tracecompass.internal.ctf.core.trace.Utils;
-
 /**
  * <b><u>StreamInput</u></b>
  * <p>
  * Represents a trace file that belongs to a certain stream.
  */
-@NonNullByDefault
 public class CTFStreamInput implements IDefinitionScope {
 
     // ------------------------------------------------------------------------

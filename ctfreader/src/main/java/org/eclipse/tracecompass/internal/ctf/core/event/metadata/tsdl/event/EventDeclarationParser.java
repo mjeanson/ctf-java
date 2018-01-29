@@ -8,13 +8,7 @@
  *******************************************************************************/
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.event;
 
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
-import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
-
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.tracecompass.ctf.core.event.metadata.DeclarationScope;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.core.event.types.IDeclaration;
@@ -31,6 +25,11 @@ import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.UnaryStrin
 import org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.stream.StreamIdParser;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
 
+import java.util.List;
+
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.concatenateUnaryStrings;
+import static org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl.TsdlUtils.isAnyUnaryString;
+
 /**
  * The declaration of an event
  *
@@ -45,7 +44,6 @@ public final class EventDeclarationParser extends AbstractScopedCommonTreeParser
      * @author Matthew Khouzam
      *
      */
-    @NonNullByDefault
     public static final class Param implements ICommonTreeParserParameter {
         private final EventDeclaration fEvent;
         private final CTFTrace fTrace;

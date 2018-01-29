@@ -14,19 +14,19 @@
 
 package org.eclipse.tracecompass.ctf.core.tests.types;
 
-import static org.junit.Assert.assertEquals;
-
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.types.Encoding;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Endianness test for {@link IntegerDefinition}.
@@ -35,12 +35,12 @@ import org.junit.Test;
  */
 public class IntegerEndiannessTest {
 
-    private static final @NonNull String name = "testInt";
-    private static final @NonNull String clockName = "clock";
+    private static final @NotNull String name = "testInt";
+    private static final @NotNull String clockName = "clock";
 
     private ByteBuffer bb;
 
-    private @NonNull BitBuffer input = new BitBuffer();
+    private @NotNull BitBuffer input = new BitBuffer();
 
     /**
      * Set up the bit-buffer to be used

@@ -15,12 +15,12 @@
 
 package org.eclipse.tracecompass.ctf.core.event.io;
 
+import org.eclipse.tracecompass.ctf.core.CTFException;
+import org.jetbrains.annotations.NotNull;
+
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.CTFException;
 
 /**
  * <b><u>BitBuffer</u></b>
@@ -46,7 +46,7 @@ public final class BitBuffer {
     // Attributes
     // ------------------------------------------------------------------------
 
-    private final @NonNull ByteBuffer fBuffer;
+    private final @NotNull ByteBuffer fBuffer;
     private final long fBitCapacity;
 
     /**
@@ -71,7 +71,7 @@ public final class BitBuffer {
      * @param buf
      *            the bytebuffer to read
      */
-    public BitBuffer(@NonNull ByteBuffer buf) {
+    public BitBuffer(@NotNull ByteBuffer buf) {
         this(buf, ByteOrder.BIG_ENDIAN);
     }
 
@@ -83,7 +83,7 @@ public final class BitBuffer {
      * @param order
      *            the byte order (big-endian, little-endian, network?)
      */
-    public BitBuffer(@NonNull ByteBuffer buf, ByteOrder order) {
+    public BitBuffer(@NotNull ByteBuffer buf, ByteOrder order) {
         fBuffer = buf;
         setByteOrder(order);
         resetPosition();

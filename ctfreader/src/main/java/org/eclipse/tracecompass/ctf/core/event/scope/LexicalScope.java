@@ -11,11 +11,11 @@
 
 package org.eclipse.tracecompass.ctf.core.event.scope;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * A node of a lexical scope
@@ -24,8 +24,8 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public class LexicalScope implements ILexicalScope {
     private int hash = 0;
-    private final @NonNull String fName;
-    private final @NonNull String fPath;
+    private final @NotNull String fName;
+    private final @NotNull String fPath;
     private final Map<String, ILexicalScope> fChildren = new ConcurrentHashMap<>();
 
     /**
@@ -47,7 +47,7 @@ public class LexicalScope implements ILexicalScope {
      *            the name of the field
      * @since 1.0
      */
-    public LexicalScope(ILexicalScope parent, @NonNull String name) {
+    public LexicalScope(ILexicalScope parent, @NotNull String name) {
         fName = name;
         fPath = parent.getPath().isEmpty() ? fName : parent.getPath() + '.' + fName;
         parent.addChild(name, this);
@@ -62,7 +62,7 @@ public class LexicalScope implements ILexicalScope {
     }
 
     @Override
-    public @NonNull String getName() {
+    public @NotNull String getName() {
         return fName;
     }
 
@@ -78,7 +78,7 @@ public class LexicalScope implements ILexicalScope {
      * @since 1.0
      */
     @Override
-    public @NonNull String getPath() {
+    public @NotNull String getPath() {
         return fPath;
     }
 

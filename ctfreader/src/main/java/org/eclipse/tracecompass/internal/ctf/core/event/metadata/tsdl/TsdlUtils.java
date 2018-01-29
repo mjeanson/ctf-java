@@ -9,12 +9,12 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata.tsdl;
 
-import java.util.List;
-
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
 import org.eclipse.tracecompass.ctf.parser.CTFParser;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * TSDL utils, this class provides some simple verifications for a common tree.
@@ -75,7 +75,7 @@ public final class TsdlUtils {
      * @throws ParseException
      *             If the strings list contains a non-string element
      */
-    public static @NonNull String concatenateUnaryStrings(List<CommonTree> strings) throws ParseException {
+    public static @NotNull String concatenateUnaryStrings(List<CommonTree> strings) throws ParseException {
 
         StringBuilder sb = new StringBuilder();
 

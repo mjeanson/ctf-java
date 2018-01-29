@@ -12,15 +12,13 @@
 
 package org.eclipse.tracecompass.ctf.core.event.scope;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A lttng specific speedup node field scope of a lexical scope
  *
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public final class FieldsScope extends LexicalScope {
 
     /**
@@ -36,8 +34,7 @@ public final class FieldsScope extends LexicalScope {
     }
 
     @Override
-    @Nullable
-    public ILexicalScope getChild(String name) {
+    public @Nullable ILexicalScope getChild(String name) {
         if (name.equals(FIELDS_RET.getName())) {
             return FIELDS_RET;
         }

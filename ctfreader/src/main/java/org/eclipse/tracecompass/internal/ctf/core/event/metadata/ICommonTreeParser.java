@@ -10,8 +10,8 @@
 package org.eclipse.tracecompass.internal.ctf.core.event.metadata;
 
 import org.antlr.runtime.tree.CommonTree;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Common tree parser interface. Should only have one method
@@ -48,7 +48,6 @@ public interface ICommonTreeParser {
      * @throws ParseException
      *             if the tree or data is wrong
      */
-    @NonNull
-    Object parse(CommonTree tree, ICommonTreeParserParameter param) throws ParseException;
+    @NotNull Object parse(CommonTree tree, ICommonTreeParserParameter param) throws ParseException;
 
 }

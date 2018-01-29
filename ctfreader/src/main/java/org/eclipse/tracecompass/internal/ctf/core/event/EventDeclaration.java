@@ -12,29 +12,25 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.CTFStrings;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.ICompositeDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.StructDefinition;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
 import org.eclipse.tracecompass.ctf.core.trace.CTFIOException;
 import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInputReader;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFPacketDescriptor;
 import org.eclipse.tracecompass.internal.ctf.core.event.types.composite.EventHeaderDefinition;
 import org.eclipse.tracecompass.internal.ctf.core.trace.CTFStream;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Representation of one type of event. A bit like "int" or "long" but for trace
@@ -107,7 +103,7 @@ public class EventDeclaration implements IEventDeclaration {
      *             As a bitbuffer is used to read, it could have wrapped
      *             IOExceptions.
      */
-    public EventDefinition createDefinition(StructDeclaration streamEventContextDecl, ICTFPacketDescriptor packetDescriptor, ICompositeDefinition packetContext, ICompositeDefinition eventHeaderDef, @NonNull BitBuffer input, long prevTimestamp)
+    public EventDefinition createDefinition(StructDeclaration streamEventContextDecl, ICTFPacketDescriptor packetDescriptor, ICompositeDefinition packetContext, ICompositeDefinition eventHeaderDef, @NotNull BitBuffer input, long prevTimestamp)
             throws CTFException {
         final CTFStream stream = fStream;
         final CTFTrace trace = stream == null ? null : stream.getTrace();
@@ -156,7 +152,7 @@ public class EventDeclaration implements IEventDeclaration {
     }
 
     @Override
-    public EventDefinition createDefinition(CTFStreamInputReader streamInputReader, @NonNull BitBuffer input, long timestamp) throws CTFException {
+    public EventDefinition createDefinition(CTFStreamInputReader streamInputReader, @NotNull BitBuffer input, long timestamp) throws CTFException {
         StructDeclaration streamEventContextDecl = streamInputReader.getStreamEventContextDecl();
         final @Nullable CTFStream stream = fStream;
         final CTFTrace trace = stream == null ? null : stream.getTrace();

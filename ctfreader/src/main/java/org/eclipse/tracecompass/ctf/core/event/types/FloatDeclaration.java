@@ -11,13 +11,12 @@
 
 package org.eclipse.tracecompass.ctf.core.event.types;
 
-import java.nio.ByteOrder;
-
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.io.BitBuffer;
 import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
+import org.jetbrains.annotations.Nullable;
+
+import java.nio.ByteOrder;
 
 /**
  * A CTF float declaration.
@@ -27,7 +26,6 @@ import org.eclipse.tracecompass.ctf.core.event.scope.IDefinitionScope;
  * @version 1.0
  * @author Matthew Khouzam
  */
-@NonNullByDefault
 public final class FloatDeclaration extends Declaration implements ISimpleDatatypeDeclaration {
 
     // ------------------------------------------------------------------------

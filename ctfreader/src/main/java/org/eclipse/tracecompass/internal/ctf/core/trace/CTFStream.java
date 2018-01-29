@@ -12,14 +12,6 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.trace;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.tracecompass.ctf.core.CTFException;
 import org.eclipse.tracecompass.ctf.core.event.IEventDeclaration;
 import org.eclipse.tracecompass.ctf.core.event.metadata.ParseException;
@@ -30,6 +22,8 @@ import org.eclipse.tracecompass.ctf.core.trace.CTFStreamInput;
 import org.eclipse.tracecompass.ctf.core.trace.CTFTrace;
 import org.eclipse.tracecompass.ctf.core.trace.ICTFStream;
 import org.eclipse.tracecompass.internal.ctf.core.event.EventDeclaration;
+
+import java.util.*;
 
 /**
  * <b><u>Stream</u></b>
@@ -62,7 +56,7 @@ public class CTFStream implements ICTFStream {
     /**
      * Maps event ids to events
      */
-    private final ArrayList<@Nullable IEventDeclaration> fEvents = new ArrayList<>();
+    private final ArrayList<IEventDeclaration> fEvents = new ArrayList<>();
 
     private boolean fEventUnsetId = false;
     private boolean fStreamIdSet = false;
@@ -193,7 +187,7 @@ public class CTFStream implements ICTFStream {
      * @since 2.0
      */
     @Override
-    public List<@Nullable IEventDeclaration> getEventDeclarations() {
+    public List<IEventDeclaration> getEventDeclarations() {
         return Collections.unmodifiableList(fEvents);
     }
 
@@ -288,7 +282,7 @@ public class CTFStream implements ICTFStream {
         }
     }
 
-    private static void ensureSize(ArrayList<@Nullable ? extends Object> list, int index) {
+    private static void ensureSize(ArrayList<?> list, int index) {
         list.ensureCapacity(index);
         while (list.size() <= index) {
             list.add(null);

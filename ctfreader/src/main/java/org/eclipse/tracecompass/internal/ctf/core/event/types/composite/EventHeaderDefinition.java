@@ -12,18 +12,12 @@
 
 package org.eclipse.tracecompass.internal.ctf.core.event.types.composite;
 
-import java.util.List;
-
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
-import org.eclipse.tracecompass.ctf.core.event.types.Declaration;
-import org.eclipse.tracecompass.ctf.core.event.types.Definition;
-import org.eclipse.tracecompass.ctf.core.event.types.ICompositeDefinition;
-import org.eclipse.tracecompass.ctf.core.event.types.IEventHeaderDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDeclaration;
-import org.eclipse.tracecompass.ctf.core.event.types.IntegerDefinition;
-
 import com.google.common.collect.ImmutableList;
+import org.eclipse.tracecompass.ctf.core.event.scope.ILexicalScope;
+import org.eclipse.tracecompass.ctf.core.event.types.*;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * An event header definition, as shown in the example of the CTF spec examples
@@ -33,7 +27,7 @@ import com.google.common.collect.ImmutableList;
  */
 public final class EventHeaderDefinition extends Definition implements ICompositeDefinition {
 
-    private static final @NonNull List<@NonNull String> FIELD_NAMES = ImmutableList.of(
+    private static final @NotNull List<String> FIELD_NAMES = ImmutableList.of(
             IEventHeaderDeclaration.ID,
             IEventHeaderDeclaration.TIMESTAMP
             );
@@ -54,7 +48,7 @@ public final class EventHeaderDefinition extends Definition implements IComposit
      * @param timestampLength
      *            the number of bits valid in the timestamp
      */
-    public EventHeaderDefinition(@NonNull Declaration eventHeaderDecl, int id, long timestamp, int timestampLength) {
+    public EventHeaderDefinition(@NotNull Declaration eventHeaderDecl, int id, long timestamp, int timestampLength) {
         super(eventHeaderDecl, null, ILexicalScope.EVENT_HEADER.getPath(), ILexicalScope.EVENT_HEADER);
         fId = id;
         fTimestamp = timestamp;
@@ -99,7 +93,7 @@ public final class EventHeaderDefinition extends Definition implements IComposit
     }
 
     @Override
-    public @NonNull List<@NonNull String> getFieldNames() {
+    public @NotNull List<String> getFieldNames() {
         return FIELD_NAMES;
     }
 }
